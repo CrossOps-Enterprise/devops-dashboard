@@ -1,11 +1,4 @@
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import Subtitle from '../../../components/Typography/Subtitle'
-import { setPageTitle } from '../../common/headerSlice'
-
 function GettingStartedContent() {
-  const dispatch = useDispatch()
-
   return (
     <>
       <article className='prose'>
@@ -33,37 +26,46 @@ function GettingStartedContent() {
         <h4> Core libraries used - </h4>
         <ul>
           <li>
-            <a href='https://reactjs.org/' target='_blank'>
+            <a href='https://reactjs.org/' target='_blank' rel='noreferrer'>
               React JS v18.2.0
             </a>
           </li>
           <li>
-            <a href='https://reactrouter.com/en/main' target='_blank'>
+            <a
+              href='https://reactrouter.com/en/main'
+              target='_blank'
+              rel='noreferrer'>
               React Router v6.4.3
             </a>
           </li>
           <li>
-            <a href='https://tailwindcss.com/' target='_blank'>
+            <a href='https://tailwindcss.com/' target='_blank' rel='noreferrer'>
               Tailwind CSS v3.3.6
             </a>
           </li>
           <li>
-            <a href='https://daisyui.com/' target='_blank'>
+            <a href='https://daisyui.com/' target='_blank' rel='noreferrer'>
               Daisy UI v4.4.19
             </a>
           </li>
           <li>
-            <a href='https://heroicons.com/' target='_blank'>
+            <a href='https://heroicons.com/' target='_blank' rel='noreferrer'>
               HeroIcons v2.0.13
             </a>
           </li>
           <li>
-            <a href='https://redux-toolkit.js.org/' target='_blank'>
+            <a
+              href='https://redux-toolkit.js.org/'
+              target='_blank'
+              rel='noreferrer'>
               Redux toolkit v1.9.0
             </a>
           </li>
           <li>
-            <a href='https://react-chartjs-2.js.org/' target='_blank'>
+            <a
+              href='https://react-chartjs-2.js.org/'
+              target='_blank'
+              rel='noreferrer'>
               React ChartJS 2 v5.0.1
             </a>
           </li>
@@ -111,7 +113,8 @@ function GettingStartedContent() {
           <a
             href='https://github.com/srobbin01/daisyui-admin-dashboard-template'
             className='text-sm text-blue-500'
-            target='_blank'>
+            target='_blank'
+            rel='noreferrer'>
             Repo Link
           </a>
           <br />
@@ -135,7 +138,8 @@ function GettingStartedContent() {
           <a
             href='https://daisyui.com/'
             target='_blank'
-            className='text-xl btn-link'>
+            className='text-xl btn-link'
+            rel='noreferrer'>
             Daisy UI
           </a>
           , a popular free and opensource tailwind component library has been
@@ -150,7 +154,8 @@ function GettingStartedContent() {
           <a
             href='https://daisyui.com/components/button/'
             target='_blank'
-            className='btn-link'>
+            className='btn-link'
+            rel='noreferrer'>
             documentation here
           </a>
           . For Ex-{' '}
@@ -199,7 +204,11 @@ function GettingStartedContent() {
         <p>
           Chart JS library has rich components of different charts available. It
           is based on{' '}
-          <a href='https://www.chartjs.org/' target='_blank' alt=''>
+          <a
+            href='https://www.chartjs.org/'
+            target='_blank'
+            alt=''
+            rel='noreferrer'>
             {' '}
             Chart.js
           </a>{' '}
@@ -227,7 +236,8 @@ function GettingStartedContent() {
           <a
             href='https://heroicons.com/'
             target='_blank'
-            className='text-xl btn-link'>
+            className='text-xl btn-link'
+            rel='noreferrer'>
             HeroIcons
           </a>{' '}
           library has been used for all the icons in this templates. It has a
@@ -240,7 +250,8 @@ function GettingStartedContent() {
           <a
             href='https://github.com/tailwindlabs/heroicons'
             target='_blank'
-            className='btn-link'>
+            className='btn-link'
+            rel='noreferrer'>
             documentation
           </a>
         </p>

@@ -166,7 +166,10 @@ function FeaturesContent() {
           file, you can add themes like cupcake, corporate, reto etc... Also we
           can configure themes colors in config file, for more documentation on
           themes checkout{' '}
-          <a href='https://daisyui.com/docs/themes/' target='_blank'>
+          <a
+            href='https://daisyui.com/docs/themes/'
+            target='_blank'
+            rel='noreferrer'>
             Daisy UI documentation.
           </a>
         </p>
