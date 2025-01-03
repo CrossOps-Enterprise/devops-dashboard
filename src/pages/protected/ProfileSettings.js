@@ -3,17 +3,14 @@ import { useDispatch } from 'react-redux'
 import { setPageTitle } from '../../features/common/headerSlice'
 import ProfileSettings from '../../features/settings/profilesettings'
 
-function InternalPage(){
-    const dispatch = useDispatch()
+function InternalPage() {
+  const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(setPageTitle({ title : "Settings"}))
-      }, [])
+  useEffect(() => {
+    dispatch(setPageTitle({ title: 'Settings' }))
+  }, [])
 
-
-    return(
-        <ProfileSettings />
-    )
+  return <ProfileSettings />
 }
 
 export default InternalPage

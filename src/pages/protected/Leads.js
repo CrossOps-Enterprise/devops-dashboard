@@ -3,17 +3,14 @@ import { useDispatch } from 'react-redux'
 import { setPageTitle } from '../../features/common/headerSlice'
 import Leads from '../../features/leads'
 
-function InternalPage(){
-    const dispatch = useDispatch()
+function InternalPage() {
+  const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(setPageTitle({ title : "Leads"}))
-      }, [])
+  useEffect(() => {
+    dispatch(setPageTitle({ title: 'Leads' }))
+  }, [])
 
-
-    return(
-        <Leads />
-    )
+  return <Leads />
 }
 
 export default InternalPage

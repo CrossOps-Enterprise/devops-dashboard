@@ -18,68 +18,67 @@ const GettingStarted = lazy(() => import('../pages/GettingStarted'))
 const DocFeatures = lazy(() => import('../pages/DocFeatures'))
 const DocComponents = lazy(() => import('../pages/DocComponents'))
 
-
 const routes = [
   {
     path: '/dashboard', // the url
-    component: Dashboard, // view rendered
+    component: Dashboard // view rendered
   },
   {
     path: '/welcome', // the url
-    component: Welcome, // view rendered
+    component: Welcome // view rendered
   },
   {
     path: '/leads',
-    component: Leads,
+    component: Leads
   },
   {
     path: '/settings-team',
-    component: Team,
+    component: Team
   },
   {
     path: '/calendar',
-    component: Calendar,
+    component: Calendar
   },
   {
     path: '/transactions',
-    component: Transactions,
+    component: Transactions
   },
   {
     path: '/settings-profile',
-    component: ProfileSettings,
+    component: ProfileSettings
   },
   {
     path: '/settings-billing',
-    component: Bills,
+    component: Bills
   },
   {
     path: '/getting-started',
-    component: GettingStarted,
+    component: GettingStarted
   },
   {
     path: '/features',
-    component: DocFeatures,
+    component: DocFeatures
   },
   {
     path: '/components',
-    component: DocComponents,
+    component: DocComponents
   },
   {
     path: '/integration',
-    component: Integration,
+    component: Integration
   },
   {
     path: '/charts',
-    component: Charts,
+    component: Charts
   },
   {
     path: '/404',
-    component: Page404,
+    component: Page404
   },
   {
     path: '/blank',
-    component: Blank,
-  },
+    component: Blank
+  }
 ]
 
 export default routes
