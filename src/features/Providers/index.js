@@ -9,24 +9,14 @@ import { SiGooglecloud, SiJira } from 'react-icons/si'
 const INITIAL_INTEGRATION_LIST = [
   {
     name: 'Amazon Web Services (AWS)',
-    Icon: FaAws,
-    icon: {
-      color: '#FF9900',
-      width: 14,
-      height: 14
-    },
+    icon: FaAws,
     isActive: true,
     description:
       'Amazon Web Services (AWS) is a cloud computing platform that provides tools and services for businesses, developers, and organizations.'
   },
   {
     name: 'Google Cloud (GCP)',
-    Icon: SiGooglecloud,
-    icon: {
-      color: '#DB4437',
-      width: 14,
-      height: 14
-    },
+    icon: SiGooglecloud,
     isActive: false,
     description:
       'Google Cloud Platform (GCP) is a collection of cloud-based computing services that run on Google`s data centers.'
@@ -64,7 +54,7 @@ function Providers() {
             <TitleCard
               key={k}
               title={i.name}
-              Icon={i.Icon}
+              icon={i.icon}
               topMargin={'mt-2'}
               className='relative'>
               <div className='flex items-start'>

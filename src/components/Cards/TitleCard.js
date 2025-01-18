@@ -1,6 +1,6 @@
 import Subtitle from '../Typography/Subtitle'
 
-function TitleCard({ title, children, topMargin, TopSideButtons, Icon }) {
+function TitleCard({ title, children, topMargin, TopSideButtons, icon: Icon }) {
   return (
     <div
       className={
