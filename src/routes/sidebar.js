@@ -28,9 +28,9 @@ const routes = [
     name: 'Dashboard'
   },
   {
-    path: '/app/instances', // url
+    path: '/app/providers', // url
     icon: <BoltIcon className={iconClasses} />, // icon component
-    name: 'Instances' // name that appear in Sidebar
+    name: 'Providers' // name that appear in Sidebar
   }
   // {
   //   path: '/app/leads', // url

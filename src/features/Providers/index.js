@@ -45,7 +45,7 @@ const INITIAL_INTEGRATION_LIST = [
   }
 ]
 
-function Instances() {
+function Providers() {
   const dispatch = useDispatch()
 
   const [integrationList, setIntegrationList] = useState(
@@ -98,4 +98,4 @@ function Instances() {
   )
 }
 
-export default Instances
+export default Providers
