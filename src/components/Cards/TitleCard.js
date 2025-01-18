@@ -9,7 +9,7 @@ function TitleCard({ title, children, topMargin, TopSideButtons, Icon }) {
       {/* Title for Card */}
       <Subtitle
         styleClass={TopSideButtons ? 'inline-block' : 'flex items-center'}>
-        <Icon size={30} />
+        {Icon && <Icon size={30} />}
         &nbsp;<span>{title}</span>
         {/* Top side button, show only if present */}
         {TopSideButtons && (
