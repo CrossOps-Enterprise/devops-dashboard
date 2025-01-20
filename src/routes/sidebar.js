@@ -1,6 +1,6 @@
 /** Icons are imported separatly to reduce build time */
-import Squares2X2Icon from '@heroicons/react/24/outline/Squares2X2Icon'
 import BoltIcon from '@heroicons/react/24/outline/BoltIcon'
+// import Squares2X2Icon from '@heroicons/react/24/outline/Squares2X2Icon'
 // import DocumentTextIcon from '@heroicons/react/24/outline/DocumentTextIcon'
 // import TableCellsIcon from '@heroicons/react/24/outline/TableCellsIcon'
 // import WalletIcon from '@heroicons/react/24/outline/WalletIcon'
@@ -22,11 +22,6 @@ const iconClasses = `h-6 w-6`
 const submenuIconClasses = `h-5 w-5`
 
 const routes = [
-  {
-    path: '/app/dashboard',
-    icon: <Squares2X2Icon className={iconClasses} />,
-    name: 'Dashboard'
-  },
   {
     path: '/app/providers', // url
     icon: <BoltIcon className={iconClasses} />, // icon component
