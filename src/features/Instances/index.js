@@ -12,8 +12,8 @@ const INITIAL_INTEGRATION_LIST = [
     Icon: FaAws,
     icon: {
       color: '#FF9900',
-      width: 14,
-      height: 14
+      width: 12,
+      height: 12
     },
     isActive: true,
     description:
@@ -24,8 +24,8 @@ const INITIAL_INTEGRATION_LIST = [
     Icon: SiGooglecloud,
     icon: {
       color: '#DB4437',
-      width: 14,
-      height: 14
+      width: 12,
+      height: 12
     },
     isActive: false,
     description:
