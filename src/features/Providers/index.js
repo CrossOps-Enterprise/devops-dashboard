@@ -11,6 +11,7 @@ const INITIAL_INTEGRATION_LIST = [
     Icon: FaAws,
     name: 'Amazon Web Services (AWS)',
     icon: FaAws,
+    iconColor: '#FF9900',
     isActive: true,
     description:
       'Amazon Web Services (AWS) is a cloud computing platform that provides tools and services for businesses, developers, and organizations.'
@@ -19,6 +20,7 @@ const INITIAL_INTEGRATION_LIST = [
     name: 'Google Cloud (GCP)',
     icon: SiGooglecloud,
     isActive: false,
+    iconColor: '#DB4437',
     description:
       'Google Cloud Platform (GCP) is a collection of cloud-based computing services that run on Google`s data centers.'
   }
@@ -54,6 +56,7 @@ function Providers() {
           return (
             <TitleCard
               key={k}
+              iconColor={i.iconColor}
               title={i.name}
               icon={i.icon}
               topMargin={'mt-2'}

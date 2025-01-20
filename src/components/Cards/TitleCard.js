@@ -1,6 +1,13 @@
 import Subtitle from '../Typography/Subtitle'
 
-function TitleCard({ title, children, topMargin, TopSideButtons, icon: Icon }) {
+function TitleCard({
+  title,
+  children,
+  topMargin,
+  TopSideButtons,
+  icon: Icon,
+  iconColor
+}) {
   return (
     <div
       className={
@@ -9,8 +16,8 @@ function TitleCard({ title, children, topMargin, TopSideButtons, icon: Icon }) {
       {/* Title for Card */}
       <Subtitle
         styleClass={TopSideButtons ? 'inline-block' : 'flex items-center'}>
-        {Icon && <Icon size={30} />}
-        &nbsp;<span>{title}</span>
+        {Icon && <Icon color={iconColor} className='w-[50px] h-[50px]' />}
+        <span className='ml-3'>{title}</span>
         {/* Top side button, show only if present */}
         {TopSideButtons && (
           <div className='inline-block float-right'>{TopSideButtons}</div>
