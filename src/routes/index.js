@@ -29,6 +29,10 @@ const routes = [
     component: Providers
   },
   {
+    path: '/providers/*',
+    component: Dashboard
+  },
+  {
     path: '/welcome', // the url
     component: Welcome // view rendered
   },

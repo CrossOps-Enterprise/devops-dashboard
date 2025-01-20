@@ -1,38 +1,30 @@
-import DashboardStats from './components/DashboardStats'
-import AmountStats from './components/AmountStats'
-import PageStats from './components/PageStats'
+import { useCallback, useState } from 'react'
+import {
+  ReactFlow,
+  useNodesState,
+  useEdgesState,
+  Background
+} from '@xyflow/react'
+import '@xyflow/react/dist/style.css'
 
-import UserGroupIcon from '@heroicons/react/24/outline/UserGroupIcon'
+import DashboardStats from './components/DashboardStats'
+
 import UsersIcon from '@heroicons/react/24/outline/UsersIcon'
 import CircleStackIcon from '@heroicons/react/24/outline/CircleStackIcon'
 import CreditCardIcon from '@heroicons/react/24/outline/CreditCardIcon'
-import UserChannels from './components/UserChannels'
-import LineChart from './components/LineChart'
-import BarChart from './components/BarChart'
-import DashboardTopBar from './components/DashboardTopBar'
-import { useDispatch } from 'react-redux'
-import { showNotification } from '../common/headerSlice'
-import DoughnutChart from './components/DoughnutChart'
-import { useState } from 'react'
 
 const statsData = [
   {
-    title: 'New Users',
-    value: '34.7k',
-    icon: <UserGroupIcon className='w-8 h-8' />,
-    description: '↗︎ 2300 (22%)'
-  },
-  {
-    title: 'Total Sales',
-    value: '$34,545',
+    title: 'Running Instances',
+    value: '2',
     icon: <CreditCardIcon className='w-8 h-8' />,
-    description: 'Current month'
+    description: 'Instances'
   },
   {
-    title: 'Pending Leads',
-    value: '450',
+    title: 'Memory Usage',
+    value: '500',
     icon: <CircleStackIcon className='w-8 h-8' />,
-    description: '50 in hot leads'
+    description: 'MB'
   },
   {
     title: 'Active Users',
@@ -42,49 +34,65 @@ const statsData = [
   }
 ]
 
-function Dashboard() {
-  const dispatch = useDispatch()
-
-  const updateDashboardPeriod = (newRange) => {
-    // Dashboard range changed, write code to refresh your values
-    dispatch(
-      showNotification({
-        message: `Period updated to ${newRange.startDate} to ${newRange.endDate}`,
-        status: 1
-      })
-    )
+const initialNodes = [
+  {
+    id: '1',
+    type: 'ResizableNode',
+    data: { label: 'VPS' },
+    position: { x: 300, y: 100 }
+  },
+  {
+    id: '2',
+    type: 'ResizableNode',
+    data: { label: 'EC2 Instance 1' },
+    position: { x: 100, y: 300 }
+  },
+  {
+    id: '3',
+    type: 'ResizableNode',
+    data: { label: 'EC2 Instance 2' },
+    position: { x: 500, y: 300 }
   }
+]
+
+const initialEdges = [
+  { id: 'e1-2', source: '1', target: '2' },
+  { id: 'e1-3', source: '1', target: '3' }
+]
+// const defaultViewport = { x: 0, y: 0, zoom: 1.5 };
+
+function Dashboard() {
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
+  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges)
+
+  const [nodeName, setNodeName] = useState('Node 1')
+  const [nodeBg, setNodeBg] = useState('#dbdbdb')
+  const [nodeHidden, setNodeHidden] = useState(false)
+
+  // const onConnect = useCallback(
+  //   (params) => setEdges((eds) => addEdge(params, eds)),
+  //   [setEdges],
+  // );
 
   return (
     <>
-      {/** ---------------------- Select Period Content ------------------------- */}
-      <DashboardTopBar updateDashboardPeriod={updateDashboardPeriod} />
-
-      {/** ---------------------- Different stats content 1 ------------------------- */}
       <div className='grid lg:grid-cols-4 mt-2 md:grid-cols-2 grid-cols-1 gap-6'>
         {statsData.map((d, k) => {
           return <DashboardStats key={k} {...d} colorIndex={k} />
         })}
       </div>
-
-      {/** ---------------------- Different charts ------------------------- */}
-      <div className='grid lg:grid-cols-2 mt-4 grid-cols-1 gap-6'>
-        <LineChart />
-        <BarChart />
-      </div>
-
-      {/** ---------------------- Different stats content 2 ------------------------- */}
-
-      <div className='grid lg:grid-cols-2 mt-10 grid-cols-1 gap-6'>
-        <AmountStats />
-        <PageStats />
-      </div>
-
-      {/** ---------------------- User source channels table  ------------------------- */}
-
-      <div className='grid lg:grid-cols-2 mt-4 grid-cols-1 gap-6'>
-        <UserChannels />
-        <DoughnutChart />
+      <div style={{ height: '800vh' }}>
+        <ReactFlow
+          nodes={nodes}
+          edges={edges}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          // defaultViewport={defaultViewport}
+          minZoom={1}
+          maxZoom={1}
+          attributionPosition='bottom-left'>
+          <Background />
+        </ReactFlow>
       </div>
     </>
   )

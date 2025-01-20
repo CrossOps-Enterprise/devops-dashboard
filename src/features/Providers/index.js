@@ -5,6 +5,7 @@ import { showNotification } from '../common/headerSlice'
 import ArrowRight from '@heroicons/react/24/solid/ArrowRightIcon'
 import { FaAws } from 'react-icons/fa6'
 import { SiGooglecloud, SiJira } from 'react-icons/si'
+import { useNavigate } from 'react-router-dom'
 
 const INITIAL_INTEGRATION_LIST = [
   {
@@ -13,6 +14,7 @@ const INITIAL_INTEGRATION_LIST = [
     icon: FaAws,
     iconColor: '#FF9900',
     isActive: true,
+    path: 'aws',
     description:
       'Amazon Web Services (AWS) is a cloud computing platform that provides tools and services for businesses, developers, and organizations.'
   },
@@ -20,6 +22,7 @@ const INITIAL_INTEGRATION_LIST = [
     name: 'Google Cloud (GCP)',
     icon: SiGooglecloud,
     isActive: false,
+    path: 'gcp',
     iconColor: '#DB4437',
     description:
       'Google Cloud Platform (GCP) is a collection of cloud-based computing services that run on Google`s data centers.'
@@ -28,6 +31,7 @@ const INITIAL_INTEGRATION_LIST = [
 
 function Providers() {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const [integrationList, setIntegrationList] = useState(
     INITIAL_INTEGRATION_LIST
@@ -49,6 +53,10 @@ function Providers() {
     )
   }
 
+  const handleNavigation = (path) => {
+    navigate(`/app/providers/${path}`)
+  }
+
   return (
     <>
       <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
@@ -64,7 +72,9 @@ function Providers() {
               <div className='flex items-start'>
                 <span className='text-left flex-1'>{i.description}</span>
               </div>
-              <div className='absolute bottom-3 right-3 cursor-pointer'>
+              <div
+                className='absolute bottom-3 right-3 cursor-pointer'
+                onClick={() => handleNavigation(i.path)}>
                 <ArrowRight className='w-8 h-8 text-gray-800' />
               </div>
             </TitleCard>
