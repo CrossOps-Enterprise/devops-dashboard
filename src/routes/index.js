@@ -3,7 +3,7 @@
 import { lazy } from 'react'
 
 const Dashboard = lazy(() => import('../pages/protected/Dashboard'))
-const Instances = lazy(() => import('../pages/protected/Instances'))
+const Providers = lazy(() => import('../pages/protected/Providers'))
 const Welcome = lazy(() => import('../pages/protected/Welcome'))
 const Page404 = lazy(() => import('../pages/protected/404'))
 const Blank = lazy(() => import('../pages/protected/Blank'))
@@ -25,8 +25,8 @@ const routes = [
     component: Dashboard // view rendered
   },
   {
-    path: '/instances',
-    component: Instances
+    path: '/providers',
+    component: Providers
   },
   {
     path: '/welcome', // the url
