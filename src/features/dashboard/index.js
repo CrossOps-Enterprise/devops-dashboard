@@ -17,16 +17,22 @@ import { useCallback } from 'react'
 
 const statsData = [
   {
-    title: 'Running Instances',
-    value: '2',
+    title: 'EC2 Instances Up',
+    value: '4',
     icon: <CreditCardIcon className='w-8 h-8' />,
     description: 'Instances'
   },
   {
-    title: 'Memory Usage',
-    value: '500',
+    title: 'Total VPCs',
+    value: '2',
+    icon: <UsersIcon className='w-8 h-8' />,
+    description: 'VPCs'
+  },
+  {
+    title: 'Databases Available',
+    value: '1',
     icon: <CircleStackIcon className='w-8 h-8' />,
-    description: 'MB'
+    description: 'Databases'
   }
 ]
 
@@ -114,10 +120,10 @@ function Dashboard() {
       </div>
       <div
         style={{
-          height: 600
-          // marginTop: '20px',
-          // border: '1px solid #ddd',
-          // borderRadius: '10px'
+          height: '100%',
+          marginTop: '10px',
+          border: '1px solid blue',
+          borderRadius: '10px'
         }}>
         <ReactFlow
           nodes={nodes}
