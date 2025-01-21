@@ -7,8 +7,6 @@ import { useDispatch } from 'react-redux'
 function LeftSidebar() {
   const location = useLocation()
 
-  const dispatch = useDispatch()
-
   const close = (e) => {
     document.getElementById('left-sidebar-drawer').click()
   }
@@ -27,6 +25,9 @@ function LeftSidebar() {
           <Link to={'/app/providers'}>SysHaven</Link>{' '}
         </li>
         {routes.map((route, k) => {
+          const isActiveLink =
+            location.pathname === route.path ||
+            location.pathname.includes(route.path)
           return (
             <li className='' key={k}>
               {route.submenu ? (
@@ -35,11 +36,15 @@ function LeftSidebar() {
                 <NavLink
                   end
                   to={route.path}
-                  className={({ isActive }) =>
-                    `${isActive ? 'font-semibold  bg-base-200 ' : 'font-normal'}`
+                  className={() =>
+                    `${
+                      isActiveLink
+                        ? 'font-semibold  bg-base-200 '
+                        : 'font-normal'
+                    }`
                   }>
                   {route.icon} {route.name}
-                  {location.pathname === route.path ? (
+                  {isActiveLink ? (
                     <span
                       className='absolute inset-y-0 left-0 w-1 rounded-tr-md rounded-br-md bg-primary '
                       aria-hidden='true'></span>
