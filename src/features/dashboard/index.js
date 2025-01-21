@@ -27,48 +27,118 @@ const statsData = [
   }
 ]
 
+// const initialNodes = [
+//   // {
+//   //   id: 'us-region',
+//   //   data: { label: 'US Region' },
+//   //   position: { x: 50, y: 50 },
+//   //   parentId: 'aws',
+//   //   style: { width: 700, height: 350 } // US Region as child of AWS
+//   // },
+//   // {
+//   //   id: 'production-vps',
+//   //   data: { label: 'Production VPC' },
+//   //   position: { x: 50, y: 50 },
+//   //   parentId: 'us-region',
+//   //   style: { width: 600, height: 250 } // Production VPC as child of US Region
+//   // },
+//   // {
+//   //   id: '1',
+//   //   data: { label: 'Subnet 1\nCIDR: 192.168.1.0/24' },
+//   //   position: { x: 20, y: 40 },
+//   //   parentId: 'production-vps' // First child node of Production VPC
+//   // },
+//   // {
+//   //   id: '2',
+//   //   data: { label: 'Subnet 2\nCIDR: 192.168.2.0/24' },
+//   //   position: { x: 20, y: 150 },
+//   //   parentId: 'production-vps' // Second child node of Production VPC
+//   // },
+//   // {
+//   //   id: '3',
+//   //   data: { label: 'Subnet 3\nCIDR: 192.168.3.0/24' },
+//   //   position: { x: 400, y: 80 },
+//   //   parentId: 'production-vps' // Third child node of Production VPC
+//   // }
+// ]
+
 const initialNodes = [
   {
-    id: 'aws',
-    data: { label: 'AWS' },
-    position: { x: 10, y: 10 },
-    style: { width: 800, height: 450 } // AWS as the top-level parent
-  },
-  {
-    id: 'us-region',
-    data: { label: 'US Region' },
+    id: 'main-group',
+    data: { label: 'Region: us-east-1 (ohio)' },
     position: { x: 50, y: 50 },
-    parentId: 'aws',
-    style: { width: 700, height: 350 } // US Region as child of AWS
+    style: { width: 800, height: 400, fontWeight: 'bold' },
+    draggable: false
   },
   {
-    id: 'production-vps',
-    data: { label: 'Production VPC' },
-    position: { x: 50, y: 50 },
-    parentId: 'us-region',
-    style: { width: 600, height: 250 } // Production VPC as child of US Region
+    id: 'vpc-1',
+    data: { label: 'VPC 1\nCIDR: 10.0.0.0/16' },
+    position: { x: 60, y: 60 },
+    parentId: 'main-group',
+    style: { width: 350, height: 300 },
+    draggable: false
   },
   {
-    id: '1',
-    data: { label: 'Subnet 1\nCIDR: 192.168.1.0/24' },
+    id: 'vpc-2',
+    data: { label: 'VPC 2\nCIDR: 192.168.0.0/16' },
+    position: { x: 420, y: 60 },
+    parentId: 'main-group',
+    style: { width: 350, height: 300 },
+    draggable: false
+  },
+  {
+    id: 'ec2-1',
+    data: { label: 'EC2 Instance 1\nType: t2.micro\nStatus: Running' },
     position: { x: 20, y: 40 },
-    parentId: 'production-vps' // First child node of Production VPC
+    parentId: 'vpc-1',
+    extent: 'parent',
+    style: { whiteSpace: 'pre-wrap' }
   },
   {
-    id: '2',
-    data: { label: 'Subnet 2\nCIDR: 192.168.2.0/24' },
+    id: 'ec2-2',
+    data: { label: 'EC2 Instance 2\nType: t2.micro\nStatus: Stopped' },
     position: { x: 20, y: 150 },
-    parentId: 'production-vps' // Second child node of Production VPC
+    parentId: 'vpc-1',
+    extent: 'parent',
+    style: { whiteSpace: 'pre-wrap' }
   },
   {
-    id: '3',
-    data: { label: 'Subnet 3\nCIDR: 192.168.3.0/24' },
-    position: { x: 400, y: 80 },
-    parentId: 'production-vps' // Third child node of Production VPC
+    id: 'ec23',
+    data: { label: 'EC2 Instance 3\nType: t2.micro\nStatus: Running' },
+    position: { x: 20, y: 40 },
+    parentId: 'vpc-2',
+    extent: 'parent',
+    style: { whiteSpace: 'pre-wrap' }
+  },
+  {
+    id: 'ec24',
+    data: { label: 'EC2 Instance 4\nType: t2.micro\nStatus: Stopped' },
+    position: { x: 20, y: 150 },
+    parentId: 'vpc-2',
+    extent: 'parent',
+    style: { whiteSpace: 'pre-wrap' }
+  },
+  {
+    id: 'db-1',
+    data: { label: 'Database 1\nType: RDS\nStatus: Available' },
+    position: { x: 180, y: 100 },
+    parentId: 'vpc-1',
+    extent: 'parent',
+    style: { whiteSpace: 'pre-wrap' }
+  },
+  {
+    id: 'db-2',
+    data: { label: 'Database 2\nType: RDS\nStatus: Available' },
+    position: { x: 180, y: 100 },
+    parentId: 'vpc-2',
+    extent: 'parent',
+    style: { whiteSpace: 'pre-wrap' }
   }
 ]
-
-const initialEdges = [{ id: 'e1-2', source: '1', target: '3' }]
+const initialEdges = [
+  { id: 'ec24-ec23', source: 'ec23', target: 'ec24' },
+  { id: 'ec23-ec24', source: 'ec24', target: 'ec23' }
+]
 
 function Dashboard() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
@@ -83,19 +153,19 @@ function Dashboard() {
       </div>
       <div
         style={{
-          height: '800px',
-          marginTop: '20px',
-          border: '1px solid #ddd',
-          borderRadius: '10px'
+          height: '800px'
+          // marginTop: '20px',
+          // border: '1px solid #ddd',
+          // borderRadius: '10px'
         }}>
         <ReactFlow
           nodes={nodes}
           edges={edges}
           onNodesChange={onNodesChange}
           onEdgesChange={onEdgesChange}
-          // fitView
-          // attributionPosition="bottom-left"
-        >
+          fitView
+          fitViewOptions={{}}
+          attributionPosition='bottom-left'>
           <Background color='#ddd' gap={16} />
           {/* <MiniMap nodeStrokeColor={(node) => node.style.backgroundColor} /> */}
         </ReactFlow>
