@@ -1,20 +1,24 @@
 function NotificationBodyRightDrawer() {
   return (
     <>
-      {[...Array(15)].map((_, i) => {
-        return (
-          <div
-            key={i}
-            className={
-              'grid mt-3 card bg-base-200 rounded-box p-3' +
-              (i < 5 ? ' bg-blue-100' : '')
-            }>
-            {i % 2 === 0
-              ? `Your sales has increased by 30% yesterday`
-              : `Total likes for instagram post - New launch this week,  has crossed 100k `}
-          </div>
-        )
-      })}
+      <div className={'grid mt-3 card rounded-box p-3 bg-blue-100'}>
+        EC2 instance has been modified
+      </div>
+      <div className={'grid mt-3 bg-base-200 card rounded-box p-3'}>
+        RDS instance is now up and running in your AWS account
+      </div>
+      <div className={'grid mt-3 card rounded-box p-3 bg-base-200'}>
+        S3 bucket has been created in your AWS account
+      </div>
+      <div className={'grid mt-3 bg-base-200 card rounded-box p-3'}>
+        Lambda function has been deployed
+      </div>
+      <div className={'grid mt-3 card rounded-box p-3 bg-base-200'}>
+        CloudFront distribution has been updated
+      </div>
+      <div className={'grid mt-3 bg-base-200 card rounded-box p-3'}>
+        IAM policy has been attached to a user
+      </div>
     </>
   )
 }
