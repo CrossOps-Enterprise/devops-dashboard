@@ -1,16 +1,19 @@
+import '@xyflow/react/dist/style.css'
+
 import {
   ReactFlow,
   Background,
   useEdgesState,
+  addEdge,
   useNodesState
 } from '@xyflow/react'
-import '@xyflow/react/dist/style.css'
 
 import DashboardStats from './components/DashboardStats'
 
 import UsersIcon from '@heroicons/react/24/outline/UsersIcon'
 import CircleStackIcon from '@heroicons/react/24/outline/CircleStackIcon'
 import CreditCardIcon from '@heroicons/react/24/outline/CreditCardIcon'
+import { useCallback } from 'react'
 
 const statsData = [
   {
@@ -27,122 +30,80 @@ const statsData = [
   }
 ]
 
-// const initialNodes = [
-//   // {
-//   //   id: 'us-region',
-//   //   data: { label: 'US Region' },
-//   //   position: { x: 50, y: 50 },
-//   //   parentId: 'aws',
-//   //   style: { width: 700, height: 350 } // US Region as child of AWS
-//   // },
-//   // {
-//   //   id: 'production-vps',
-//   //   data: { label: 'Production VPC' },
-//   //   position: { x: 50, y: 50 },
-//   //   parentId: 'us-region',
-//   //   style: { width: 600, height: 250 } // Production VPC as child of US Region
-//   // },
-//   // {
-//   //   id: '1',
-//   //   data: { label: 'Subnet 1\nCIDR: 192.168.1.0/24' },
-//   //   position: { x: 20, y: 40 },
-//   //   parentId: 'production-vps' // First child node of Production VPC
-//   // },
-//   // {
-//   //   id: '2',
-//   //   data: { label: 'Subnet 2\nCIDR: 192.168.2.0/24' },
-//   //   position: { x: 20, y: 150 },
-//   //   parentId: 'production-vps' // Second child node of Production VPC
-//   // },
-//   // {
-//   //   id: '3',
-//   //   data: { label: 'Subnet 3\nCIDR: 192.168.3.0/24' },
-//   //   position: { x: 400, y: 80 },
-//   //   parentId: 'production-vps' // Third child node of Production VPC
-//   // }
-// ]
-
 const initialNodes = [
   {
     id: 'main-group',
     data: { label: 'Region: us-east-1 (ohio)' },
     position: { x: 50, y: 50 },
-    style: { width: 800, height: 400, fontWeight: 'bold' },
+    style: { width: 750, height: 350, fontWeight: 'bold' },
     draggable: false
   },
   {
-    id: 'vpc-1',
+    id: 'vpc1',
     data: { label: 'VPC 1\nCIDR: 10.0.0.0/16' },
-    position: { x: 60, y: 60 },
+    position: { x: 40, y: 50 },
     parentId: 'main-group',
-    style: { width: 350, height: 300 },
+    style: { width: 250, height: 250 },
     draggable: false
   },
   {
-    id: 'vpc-2',
+    id: 'vpc2',
     data: { label: 'VPC 2\nCIDR: 192.168.0.0/16' },
-    position: { x: 420, y: 60 },
+    position: { x: 460, y: 50 },
     parentId: 'main-group',
-    style: { width: 350, height: 300 },
+    style: { width: 250, height: 250 },
     draggable: false
   },
   {
-    id: 'ec2-1',
+    id: 'ec1',
+    type: 'input',
     data: { label: 'EC2 Instance 1\nType: t2.micro\nStatus: Running' },
-    position: { x: 20, y: 40 },
-    parentId: 'vpc-1',
+    position: { x: 50, y: 40 },
+    parentId: 'vpc1',
     extent: 'parent',
     style: { whiteSpace: 'pre-wrap' }
   },
   {
-    id: 'ec2-2',
+    id: 'ec2',
+    type: 'output',
     data: { label: 'EC2 Instance 2\nType: t2.micro\nStatus: Stopped' },
-    position: { x: 20, y: 150 },
-    parentId: 'vpc-1',
+    position: { x: 50, y: 150 },
+    parentId: 'vpc1',
     extent: 'parent',
     style: { whiteSpace: 'pre-wrap' }
   },
   {
-    id: 'ec23',
+    id: 'ec3',
     data: { label: 'EC2 Instance 3\nType: t2.micro\nStatus: Running' },
-    position: { x: 20, y: 40 },
-    parentId: 'vpc-2',
-    extent: 'parent',
+    position: { x: 50, y: 40 },
+    parentId: 'vpc2',
     style: { whiteSpace: 'pre-wrap' }
   },
   {
-    id: 'ec24',
+    id: 'ec4',
     data: { label: 'EC2 Instance 4\nType: t2.micro\nStatus: Stopped' },
-    position: { x: 20, y: 150 },
-    parentId: 'vpc-2',
-    extent: 'parent',
+    position: { x: 50, y: 150 },
+    parentId: 'vpc2',
     style: { whiteSpace: 'pre-wrap' }
   },
   {
-    id: 'db-1',
+    id: 'db1',
     data: { label: 'Database 1\nType: RDS\nStatus: Available' },
-    position: { x: 180, y: 100 },
-    parentId: 'vpc-1',
-    extent: 'parent',
-    style: { whiteSpace: 'pre-wrap' }
-  },
-  {
-    id: 'db-2',
-    data: { label: 'Database 2\nType: RDS\nStatus: Available' },
-    position: { x: 180, y: 100 },
-    parentId: 'vpc-2',
+    position: { x: 300, y: 150 },
+    parentId: 'main-group',
     extent: 'parent',
     style: { whiteSpace: 'pre-wrap' }
   }
 ]
-const initialEdges = [
-  { id: 'ec24-ec23', source: 'ec23', target: 'ec24' },
-  { id: 'ec23-ec24', source: 'ec24', target: 'ec23' }
-]
+const initialEdges = [{ id: '1-2', source: '1', target: '2', animated: true }]
 
 function Dashboard() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges)
+
+  const onConnect = useCallback((connection) => {
+    setEdges((eds) => addEdge(connection, eds))
+  }, [])
 
   return (
     <>
@@ -153,7 +114,7 @@ function Dashboard() {
       </div>
       <div
         style={{
-          height: '800px'
+          height: 600
           // marginTop: '20px',
           // border: '1px solid #ddd',
           // borderRadius: '10px'
@@ -161,6 +122,7 @@ function Dashboard() {
         <ReactFlow
           nodes={nodes}
           edges={edges}
+          onConnect={onConnect}
           onNodesChange={onNodesChange}
           onEdgesChange={onEdgesChange}
           fitView
