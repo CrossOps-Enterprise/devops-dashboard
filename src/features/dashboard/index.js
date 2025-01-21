@@ -1,9 +1,8 @@
-import { useCallback, useState } from 'react'
 import {
   ReactFlow,
-  useNodesState,
+  Background,
   useEdgesState,
-  Background
+  useNodesState
 } from '@xyflow/react'
 import '@xyflow/react/dist/style.css'
 
@@ -25,54 +24,55 @@ const statsData = [
     value: '500',
     icon: <CircleStackIcon className='w-8 h-8' />,
     description: 'MB'
-  },
-  {
-    title: 'Active Users',
-    value: '5.6k',
-    icon: <UsersIcon className='w-8 h-8' />,
-    description: '↙ 300 (18%)'
   }
 ]
 
 const initialNodes = [
   {
+    id: 'aws',
+    data: { label: 'AWS' },
+    position: { x: 10, y: 10 },
+    style: { width: 800, height: 450 } // AWS as the top-level parent
+  },
+  {
+    id: 'us-region',
+    data: { label: 'US Region' },
+    position: { x: 50, y: 50 },
+    parentId: 'aws',
+    style: { width: 700, height: 350 } // US Region as child of AWS
+  },
+  {
+    id: 'production-vps',
+    data: { label: 'Production VPC' },
+    position: { x: 50, y: 50 },
+    parentId: 'us-region',
+    style: { width: 600, height: 250 } // Production VPC as child of US Region
+  },
+  {
     id: '1',
-    type: 'ResizableNode',
-    data: { label: 'VPS' },
-    position: { x: 300, y: 100 }
+    data: { label: 'Subnet 1\nCIDR: 192.168.1.0/24' },
+    position: { x: 20, y: 40 },
+    parentId: 'production-vps' // First child node of Production VPC
   },
   {
     id: '2',
-    type: 'ResizableNode',
-    data: { label: 'EC2 Instance 1' },
-    position: { x: 100, y: 300 }
+    data: { label: 'Subnet 2\nCIDR: 192.168.2.0/24' },
+    position: { x: 20, y: 150 },
+    parentId: 'production-vps' // Second child node of Production VPC
   },
   {
     id: '3',
-    type: 'ResizableNode',
-    data: { label: 'EC2 Instance 2' },
-    position: { x: 500, y: 300 }
+    data: { label: 'Subnet 3\nCIDR: 192.168.3.0/24' },
+    position: { x: 400, y: 80 },
+    parentId: 'production-vps' // Third child node of Production VPC
   }
 ]
 
-const initialEdges = [
-  { id: 'e1-2', source: '1', target: '2' },
-  { id: 'e1-3', source: '1', target: '3' }
-]
-// const defaultViewport = { x: 0, y: 0, zoom: 1.5 };
+const initialEdges = [{ id: 'e1-2', source: '1', target: '3' }]
 
 function Dashboard() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges)
-
-  const [nodeName, setNodeName] = useState('Node 1')
-  const [nodeBg, setNodeBg] = useState('#dbdbdb')
-  const [nodeHidden, setNodeHidden] = useState(false)
-
-  // const onConnect = useCallback(
-  //   (params) => setEdges((eds) => addEdge(params, eds)),
-  //   [setEdges],
-  // );
 
   return (
     <>
@@ -81,17 +81,23 @@ function Dashboard() {
           return <DashboardStats key={k} {...d} colorIndex={k} />
         })}
       </div>
-      <div style={{ height: '800vh' }}>
+      <div
+        style={{
+          height: '800px',
+          marginTop: '20px',
+          border: '1px solid #ddd',
+          borderRadius: '10px'
+        }}>
         <ReactFlow
           nodes={nodes}
           edges={edges}
           onNodesChange={onNodesChange}
           onEdgesChange={onEdgesChange}
-          // defaultViewport={defaultViewport}
-          minZoom={1}
-          maxZoom={1}
-          attributionPosition='bottom-left'>
-          <Background />
+          // fitView
+          // attributionPosition="bottom-left"
+        >
+          <Background color='#ddd' gap={16} />
+          {/* <MiniMap nodeStrokeColor={(node) => node.style.backgroundColor} /> */}
         </ReactFlow>
       </div>
     </>

@@ -11,7 +11,7 @@ import BoltIcon from '@heroicons/react/24/outline/BoltIcon'
 // import ArrowRightOnRectangleIcon from '@heroicons/react/24/outline/ArrowRightOnRectangleIcon'
 // import UserIcon from '@heroicons/react/24/outline/UserIcon'
 // import Cog6ToothIcon from '@heroicons/react/24/outline/Cog6ToothIcon'
-// import ChartBarIcon from '@heroicons/react/24/outline/ChartBarIcon'
+import ChartBarIcon from '@heroicons/react/24/outline/ChartBarIcon'
 // import CurrencyDollarIcon from '@heroicons/react/24/outline/CurrencyDollarIcon'
 // import InboxArrowDownIcon from '@heroicons/react/24/outline/InboxArrowDownIcon'
 // import UsersIcon from '@heroicons/react/24/outline/UsersIcon'
@@ -26,7 +26,7 @@ const routes = [
     path: '/app/providers', // url
     icon: <BoltIcon className={iconClasses} />, // icon component
     name: 'Providers' // name that appear in Sidebar
-  }
+  },
   // {
   //   path: '/app/leads', // url
   //   icon: <InboxArrowDownIcon className={iconClasses} />, // icon component
@@ -42,11 +42,11 @@ const routes = [
   //   icon: <ChartBarIcon className={iconClasses} />, // icon component
   //   name: 'Analytics' // name that appear in Sidebar
   // },
-  // {
-  //   path: '/app/integration', // url
-  //   icon: <BoltIcon className={iconClasses} />, // icon component
-  //   name: 'Integration' // name that appear in Sidebar
-  // },
+  {
+    path: '/app/logs', // url
+    icon: <ChartBarIcon className={iconClasses} />, // icon component
+    name: 'Logs' // name that appear in Sidebar
+  }
   // {
   //   path: '/app/calendar', // url
   //   icon: <CalendarDaysIcon className={iconClasses} />, // icon component

@@ -33,6 +33,10 @@ const routes = [
     component: Dashboard
   },
   {
+    path: '/logs',
+    component: Providers
+  },
+  {
     path: '/welcome', // the url
     component: Welcome // view rendered
   },
