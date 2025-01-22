@@ -40,8 +40,8 @@ const initialNodes = [
   {
     id: 'main-group',
     data: { label: 'Region: us-east-1 (ohio)' },
-    position: { x: 50, y: 50 },
-    style: { width: 750, height: 350, fontWeight: 'bold' },
+    position: { x: 100, y: 40 },
+    style: { width: 800, height: 400, fontWeight: 'bold' },
     draggable: false
   },
   {
@@ -62,6 +62,7 @@ const initialNodes = [
   },
   {
     id: 'ec1',
+    sourcePosition: 'bottom',
     type: 'input',
     data: { label: 'EC2 Instance 1\nType: t2.micro\nStatus: Running' },
     position: { x: 50, y: 40 },
@@ -71,7 +72,8 @@ const initialNodes = [
   },
   {
     id: 'ec2',
-    type: 'output',
+    type: 'input',
+    sourcePosition: 'top',
     data: { label: 'EC2 Instance 2\nType: t2.micro\nStatus: Stopped' },
     position: { x: 50, y: 150 },
     parentId: 'vpc1',
@@ -80,6 +82,7 @@ const initialNodes = [
   },
   {
     id: 'ec3',
+    targetPosition: 'bottom',
     data: { label: 'EC2 Instance 3\nType: t2.micro\nStatus: Running' },
     position: { x: 50, y: 40 },
     parentId: 'vpc2',
@@ -94,6 +97,8 @@ const initialNodes = [
   },
   {
     id: 'db1',
+    targetPosition: 'left',
+    sourcePosition: 'right',
     data: { label: 'Database 1\nType: RDS\nStatus: Available' },
     position: { x: 300, y: 150 },
     parentId: 'main-group',
@@ -101,7 +106,12 @@ const initialNodes = [
     style: { whiteSpace: 'pre-wrap' }
   }
 ]
-const initialEdges = [{ id: '1-2', source: '1', target: '2', animated: true }]
+const initialEdges = [
+  { id: '1-1', source: 'ec1', target: 'db1' },
+  { id: '1-2', source: 'ec2', target: 'db1' },
+  { id: '1-3', source: 'db1', target: 'ec3' },
+  { id: '1-4', source: 'db1', target: 'ec4' }
+]
 
 function Dashboard() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
@@ -120,8 +130,9 @@ function Dashboard() {
       </div>
       <div
         style={{
-          height: '100%',
+          height: '75%',
           marginTop: '10px',
+          paddingBottom: '10px',
           border: '1px solid blue',
           borderRadius: '10px'
         }}>
@@ -131,9 +142,10 @@ function Dashboard() {
           onConnect={onConnect}
           onNodesChange={onNodesChange}
           onEdgesChange={onEdgesChange}
-          fitView
-          fitViewOptions={{}}
-          attributionPosition='bottom-left'>
+          // fitView
+          // fitViewOptions={{}}
+          // attributionPosition='bottom-left'
+        >
           <Background color='#ddd' gap={16} />
           {/* <MiniMap nodeStrokeColor={(node) => node.style.backgroundColor} /> */}
         </ReactFlow>

@@ -30,3 +30,7 @@
   height: 120px;
   animation: spin 2s linear infinite;
 }
+
+.react-flow__node {
+  z-index: -1 !important;
+}
