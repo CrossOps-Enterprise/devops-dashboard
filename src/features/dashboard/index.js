@@ -119,9 +119,9 @@ function Dashboard() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges)
 
-  // const onConnect = useCallback((connection) => {
-  //   setEdges((eds) => addEdge(connection, eds))
-  // }, [])
+  const onConnect = useCallback((connection) => {
+    setEdges((eds) => addEdge(connection, eds))
+  }, [])
 
   return (
     <>
@@ -181,7 +181,7 @@ function Dashboard() {
           <ReactFlow
             nodes={nodes}
             edges={edges}
-            // onConnect={onConnect}
+            onConnect={onConnect}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}></ReactFlow>
         </div>
