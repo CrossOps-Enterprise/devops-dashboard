@@ -11,13 +11,13 @@ function LandingIntro() {
               className='w-12 inline-block mr-2 mask mask-circle'
               alt='dashwind-logo'
             />
-            DashWind
+            SysHaven
           </h1>
 
           <div className='text-center mt-12'>
             <img
               src='./intro.png'
-              alt='Dashwind Admin Template'
+              alt='SysHaven Dashboard'
               className='w-48 inline-block'></img>
           </div>
 

@@ -28,7 +28,7 @@ function ProfileSettings() {
           />
           <InputText
             labelTitle='Email Id'
-            defaultValue='alex@dashwind.com'
+            defaultValue='alex@syshaven.com'
             updateFormValue={updateFormValue}
           />
           <InputText
