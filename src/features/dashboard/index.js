@@ -109,19 +109,19 @@ const initialNodes = [
   }
 ]
 const initialEdges = [
-  { id: '1-1', source: 'ec1', target: 'db1' },
-  { id: '1-2', source: 'ec2', target: 'db1' },
-  { id: '1-3', source: 'db1', target: 'ec3' },
-  { id: '1-4', source: 'db1', target: 'ec4' }
+  { id: '1-1', source: 'ec1', target: 'db1', animated: true },
+  { id: '1-2', source: 'ec2', target: 'db1', animated: true },
+  { id: '1-3', source: 'db1', target: 'ec3', animated: true },
+  { id: '1-4', source: 'db1', target: 'ec4', animated: true }
 ]
 
 function Dashboard() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges)
 
-  const onConnect = useCallback((connection) => {
-    setEdges((eds) => addEdge(connection, eds))
-  }, [])
+  // const onConnect = useCallback((connection) => {
+  //   setEdges((eds) => addEdge(connection, eds))
+  // }, [])
 
   return (
     <>
@@ -181,7 +181,7 @@ function Dashboard() {
           <ReactFlow
             nodes={nodes}
             edges={edges}
-            onConnect={onConnect}
+            // onConnect={onConnect}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}></ReactFlow>
         </div>
