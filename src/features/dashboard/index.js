@@ -36,28 +36,30 @@ const statsData = [
   }
 ]
 
+const cloud = 'AWS'
+
 const initialNodes = [
   {
     id: 'main-group',
     data: { label: 'Region: us-east-1 (ohio)' },
-    position: { x: 100, y: 40 },
-    style: { width: 800, height: 400, fontWeight: 'bold' },
+    position: { x: 50, y: 20 },
+    style: { width: 650, height: 400, fontWeight: 'bold' },
     draggable: false
   },
   {
     id: 'vpc1',
     data: { label: 'VPC 1\nCIDR: 10.0.0.0/16' },
-    position: { x: 40, y: 50 },
+    position: { x: 20, y: 50 },
     parentId: 'main-group',
-    style: { width: 250, height: 250 },
+    style: { width: 200, height: 250 },
     draggable: false
   },
   {
     id: 'vpc2',
     data: { label: 'VPC 2\nCIDR: 192.168.0.0/16' },
-    position: { x: 460, y: 50 },
+    position: { x: 400, y: 50 },
     parentId: 'main-group',
-    style: { width: 250, height: 250 },
+    style: { width: 200, height: 250 },
     draggable: false
   },
   {
@@ -65,7 +67,7 @@ const initialNodes = [
     sourcePosition: 'bottom',
     type: 'input',
     data: { label: 'EC2 Instance 1\nType: t2.micro\nStatus: Running' },
-    position: { x: 50, y: 40 },
+    position: { x: 20, y: 40 },
     parentId: 'vpc1',
     extent: 'parent',
     style: { whiteSpace: 'pre-wrap' }
@@ -75,7 +77,7 @@ const initialNodes = [
     type: 'input',
     sourcePosition: 'top',
     data: { label: 'EC2 Instance 2\nType: t2.micro\nStatus: Stopped' },
-    position: { x: 50, y: 150 },
+    position: { x: 20, y: 150 },
     parentId: 'vpc1',
     extent: 'parent',
     style: { whiteSpace: 'pre-wrap' }
@@ -84,14 +86,14 @@ const initialNodes = [
     id: 'ec3',
     targetPosition: 'bottom',
     data: { label: 'EC2 Instance 3\nType: t2.micro\nStatus: Running' },
-    position: { x: 50, y: 40 },
+    position: { x: 20, y: 40 },
     parentId: 'vpc2',
     style: { whiteSpace: 'pre-wrap' }
   },
   {
     id: 'ec4',
     data: { label: 'EC2 Instance 4\nType: t2.micro\nStatus: Stopped' },
-    position: { x: 50, y: 150 },
+    position: { x: 20, y: 150 },
     parentId: 'vpc2',
     style: { whiteSpace: 'pre-wrap' }
   },
@@ -100,7 +102,7 @@ const initialNodes = [
     targetPosition: 'left',
     sourcePosition: 'right',
     data: { label: 'Database 1\nType: RDS\nStatus: Available' },
-    position: { x: 300, y: 150 },
+    position: { x: 235, y: 150 },
     parentId: 'main-group',
     extent: 'parent',
     style: { whiteSpace: 'pre-wrap' }
@@ -128,27 +130,61 @@ function Dashboard() {
           return <DashboardStats key={k} {...d} colorIndex={k} />
         })}
       </div>
-      <div
-        style={{
-          height: '75%',
-          marginTop: '10px',
-          paddingBottom: '10px',
-          border: '1px solid blue',
-          borderRadius: '10px'
-        }}>
-        <ReactFlow
-          nodes={nodes}
-          edges={edges}
-          onConnect={onConnect}
-          onNodesChange={onNodesChange}
-          onEdgesChange={onEdgesChange}
-          // fitView
-          // fitViewOptions={{}}
-          // attributionPosition='bottom-left'
-        >
-          <Background color='#ddd' gap={16} />
-          {/* <MiniMap nodeStrokeColor={(node) => node.style.backgroundColor} /> */}
-        </ReactFlow>
+      <div className='flex flex-col lg:flex-row mt-4 h-[100%]'>
+        <div className='bg-white shadow-md rounded-lg p-2 lg:w-1/4 h-[75%]'>
+          <div className='text-center font-bold mb-4'>{cloud}</div>
+          <div className='space-y-4'>
+            {initialNodes?.map(
+              (node) =>
+                !node.parentId && (
+                  <div key={node.id} className='border-b-2 border-l-2 p-1'>
+                    <div className='font-bold'>{node.data.label}</div>
+                    <div className='ml-2'>
+                      {initialNodes
+                        .filter((child) => child.parentId === node.id)
+                        .map((child) => (
+                          <div
+                            key={child.id}
+                            className='border-b-2 border-l-2 p-1 mt-1 mb-1'>
+                            <div className='font-bold'>
+                              {child.data.label.split('\n')[0]}
+                            </div>
+                            <div className='ml-2'>
+                              {initialNodes
+                                .filter(
+                                  (grandChild) =>
+                                    grandChild.parentId === child.id
+                                )
+                                .map((grandChild) => (
+                                  <div
+                                    key={grandChild.id}
+                                    className='border-b-2 border-l-2 p-1 mt-1 mb-1'>
+                                    {grandChild.data.label.split('\n')[0]}
+                                  </div>
+                                ))}
+                            </div>
+                          </div>
+                        ))}
+                    </div>
+                  </div>
+                )
+            )}
+          </div>
+        </div>
+        <div
+          className=' shadow-md rounded-lg lg:ml-4 lg:mt-0 flex-grow h-[75%] pb-10'
+          style={{
+            border: '1px solid blue',
+            borderRadius: '5px'
+          }}>
+          <div className='text-center font-bold mb-4'>{cloud}</div>
+          <ReactFlow
+            nodes={nodes}
+            edges={edges}
+            onConnect={onConnect}
+            onNodesChange={onNodesChange}
+            onEdgesChange={onEdgesChange}></ReactFlow>
+        </div>
       </div>
     </>
   )
