@@ -1,19 +1,14 @@
-import '@xyflow/react/dist/style.css'
-
-import {
-  ReactFlow,
-  Background,
-  useEdgesState,
-  addEdge,
-  useNodesState
-} from '@xyflow/react'
+import { useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { ReactFlow, useEdgesState, addEdge, useNodesState } from '@xyflow/react'
 
 import DashboardStats from './components/DashboardStats'
 
 import UsersIcon from '@heroicons/react/24/outline/UsersIcon'
 import CircleStackIcon from '@heroicons/react/24/outline/CircleStackIcon'
 import CreditCardIcon from '@heroicons/react/24/outline/CreditCardIcon'
-import { useCallback } from 'react'
+
+import '@xyflow/react/dist/style.css'
 
 const statsData = [
   {
@@ -116,12 +111,20 @@ const initialEdges = [
 ]
 
 function Dashboard() {
+  const navigate = useNavigate()
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges)
 
   const onConnect = useCallback((connection) => {
     setEdges((eds) => addEdge(connection, eds))
   }, [])
+
+  const onNodeClick = (event, node) => {
+    if (!node.id.includes('ec')) {
+      return
+    }
+    navigate(`/app/stats/?id=${node.id}`)
+  }
 
   return (
     <>
@@ -182,6 +185,7 @@ function Dashboard() {
             nodes={nodes}
             edges={edges}
             onConnect={onConnect}
+            onNodeClick={onNodeClick}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}></ReactFlow>
         </div>

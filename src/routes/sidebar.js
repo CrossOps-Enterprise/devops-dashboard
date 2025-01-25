@@ -26,7 +26,7 @@ const routes = [
     path: '/app/providers', // url
     icon: <BoltIcon className={iconClasses} />, // icon component
     name: 'Providers' // name that appear in Sidebar
-  },
+  }
   // {
   //   path: '/app/leads', // url
   //   icon: <InboxArrowDownIcon className={iconClasses} />, // icon component
@@ -42,11 +42,6 @@ const routes = [
   //   icon: <ChartBarIcon className={iconClasses} />, // icon component
   //   name: 'Analytics' // name that appear in Sidebar
   // },
-  {
-    path: '/app/logs', // url
-    icon: <ChartBarIcon className={iconClasses} />, // icon component
-    name: 'Logs' // name that appear in Sidebar
-  }
   // {
   //   path: '/app/calendar', // url
   //   icon: <CalendarDaysIcon className={iconClasses} />, // icon component

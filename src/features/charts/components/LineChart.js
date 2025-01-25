@@ -23,7 +23,7 @@ ChartJS.register(
   Legend
 )
 
-function LineChart() {
+function LineChart({ title }) {
   const options = {
     responsive: true,
     plugins: {
@@ -48,9 +48,9 @@ function LineChart() {
     datasets: [
       {
         fill: true,
-        label: 'MAU',
+        label: '',
         data: labels.map(() => {
-          return Math.random() * 100 + 500
+          return Math.random() * 100 + 1
         }),
         borderColor: 'rgb(53, 162, 235)',
         backgroundColor: 'rgba(53, 162, 235, 0.5)'
@@ -59,8 +59,12 @@ function LineChart() {
   }
 
   return (
-    <TitleCard title={'Montly Active Users (in k)'}>
-      <Line data={data} options={options} />
+    <TitleCard title={title} topMargin='mt-6'>
+      <Line
+        data={data}
+        options={options}
+        style={{ maxHeight: '400px', width: '100%' }}
+      />
     </TitleCard>
   )
 }

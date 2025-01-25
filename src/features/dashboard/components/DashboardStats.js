@@ -1,4 +1,11 @@
-function DashboardStats({ title, icon, value, description, colorIndex }) {
+function DashboardStats({
+  title,
+  icon,
+  value,
+  description,
+  colorIndex,
+  onClick
+}) {
   const COLORS = ['primary', 'primary']
 
   const getDescStyle = () => {
@@ -10,7 +17,7 @@ function DashboardStats({ title, icon, value, description, colorIndex }) {
   }
 
   return (
-    <div className='stats shadow'>
+    <div className='stats shadow cursor-pointer' onClick={onClick}>
       <div className='stat'>
         <div
           className={`stat-figure dark:text-slate-300 text-${COLORS[colorIndex % 2]}`}>
