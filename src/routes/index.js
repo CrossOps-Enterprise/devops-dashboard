@@ -25,7 +25,7 @@ const routes = [
     component: Dashboard // view rendered
   },
   {
-    path: '/providers',
+    path: '/applications',
     component: Providers
   },
   {

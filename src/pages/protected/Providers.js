@@ -7,7 +7,7 @@ function InternalPage() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(setPageTitle({ title: 'Providers' }))
+    dispatch(setPageTitle({ title: 'Applications' }))
   }, [])
 
   return <Providers />

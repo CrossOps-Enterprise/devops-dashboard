@@ -23,9 +23,9 @@ const submenuIconClasses = `h-5 w-5`
 
 const routes = [
   {
-    path: '/app/providers', // url
+    path: '/app/applications', // url
     icon: <BoltIcon className={iconClasses} />, // icon component
-    name: 'Providers' // name that appear in Sidebar
+    name: 'Applications' // name that appear in Sidebar
   }
   // {
   //   path: '/app/leads', // url

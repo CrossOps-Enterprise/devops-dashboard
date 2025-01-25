@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom'
 const INITIAL_INTEGRATION_LIST = [
   {
     Icon: FaAws,
-    name: 'Amazon Web Services (AWS)',
+    name: 'Production 1',
     icon: FaAws,
     iconColor: '#FF9900',
     isActive: true,
