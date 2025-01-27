@@ -10,23 +10,23 @@ import { useNavigate } from 'react-router-dom'
 const INITIAL_INTEGRATION_LIST = [
   {
     Icon: FaAws,
-    name: 'Production 1',
+    name: 'Production One',
     icon: FaAws,
     iconColor: '#FF9900',
     isActive: true,
     path: 'aws',
     description:
       'Amazon Web Services (AWS) is a cloud computing platform that provides tools and services for businesses, developers, and organizations.'
-  },
-  {
-    name: 'Google Cloud (GCP)',
-    icon: SiGooglecloud,
-    isActive: false,
-    path: 'gcp',
-    iconColor: '#DB4437',
-    description:
-      'Google Cloud Platform (GCP) is a collection of cloud-based computing services that run on Google`s data centers.'
   }
+  // {
+  //   name: 'Google Cloud (GCP)',
+  //   icon: SiGooglecloud,
+  //   isActive: false,
+  //   path: 'gcp',
+  //   iconColor: '#DB4437',
+  //   description:
+  //     'Google Cloud Platform (GCP) is a collection of cloud-based computing services that run on Google`s data centers.'
+  // }
 ]
 
 function Providers() {
