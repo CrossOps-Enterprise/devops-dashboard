@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { setPageTitle } from '../../features/common/headerSlice'
-import Providers from '../../features/Providers'
+import Applications from '../../features/Applications'
 
 function InternalPage() {
   const dispatch = useDispatch()
@@ -10,7 +10,7 @@ function InternalPage() {
     dispatch(setPageTitle({ title: 'Applications' }))
   }, [])
 
-  return <Providers />
+  return <Applications />
 }
 
 export default InternalPage

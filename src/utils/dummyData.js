@@ -241,5 +241,83 @@ module.exports = Object.freeze({
       amount: 617,
       date: moment().add(-3, 'd').endOf('day')
     }
+  ],
+
+  INITIAL_NODES: [
+    {
+      id: 'main-group',
+      data: { label: 'Region: us-east-1 (ohio)' },
+      position: { x: 50, y: 20 },
+      style: { width: 650, height: 400, fontWeight: 'bold' },
+      draggable: false
+    },
+    {
+      id: 'vpc1',
+      data: { label: 'VPC 1\nCIDR: 10.0.0.0/16' },
+      position: { x: 20, y: 50 },
+      parentId: 'main-group',
+      style: { width: 200, height: 250 },
+      draggable: false
+    },
+    {
+      id: 'vpc2',
+      data: { label: 'VPC 2\nCIDR: 192.168.0.0/16' },
+      position: { x: 400, y: 50 },
+      parentId: 'main-group',
+      style: { width: 200, height: 250 },
+      draggable: false
+    },
+    {
+      id: 'ec1',
+      sourcePosition: 'bottom',
+      type: 'input',
+      data: { label: 'EC2 Instance 1\nType: t2.micro\nStatus: Running' },
+      position: { x: 20, y: 40 },
+      parentId: 'vpc1',
+      extent: 'parent',
+      style: { whiteSpace: 'pre-wrap' }
+    },
+    {
+      id: 'ec2',
+      type: 'input',
+      sourcePosition: 'top',
+      data: { label: 'EC2 Instance 2\nType: t2.micro\nStatus: Stopped' },
+      position: { x: 20, y: 150 },
+      parentId: 'vpc1',
+      extent: 'parent',
+      style: { whiteSpace: 'pre-wrap' }
+    },
+    {
+      id: 'ec3',
+      targetPosition: 'bottom',
+      data: { label: 'EC2 Instance 3\nType: t2.micro\nStatus: Running' },
+      position: { x: 20, y: 40 },
+      parentId: 'vpc2',
+      style: { whiteSpace: 'pre-wrap' }
+    },
+    {
+      id: 'ec4',
+      data: { label: 'EC2 Instance 4\nType: t2.micro\nStatus: Stopped' },
+      position: { x: 20, y: 150 },
+      parentId: 'vpc2',
+      style: { whiteSpace: 'pre-wrap' }
+    },
+    {
+      id: 'db1',
+      targetPosition: 'left',
+      sourcePosition: 'right',
+      data: { label: 'Database 1\nType: RDS\nStatus: Available' },
+      position: { x: 235, y: 150 },
+      parentId: 'main-group',
+      extent: 'parent',
+      style: { whiteSpace: 'pre-wrap' }
+    }
+  ],
+
+  INITIAL_EDGES: [
+    { id: '1-1', source: 'ec1', target: 'db1', animated: true },
+    { id: '1-2', source: 'ec2', target: 'db1', animated: true },
+    { id: '1-3', source: 'db1', target: 'ec3', animated: true },
+    { id: '1-4', source: 'db1', target: 'ec4', animated: true }
   ]
 })
