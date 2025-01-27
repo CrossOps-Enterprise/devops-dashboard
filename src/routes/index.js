@@ -3,11 +3,11 @@
 import { lazy } from 'react'
 
 const Dashboard = lazy(() => import('../pages/protected/Dashboard'))
-const Providers = lazy(() => import('../pages/protected/Providers'))
+const Applications = lazy(() => import('../pages/protected/Applications'))
 const Welcome = lazy(() => import('../pages/protected/Welcome'))
 const Page404 = lazy(() => import('../pages/protected/404'))
 const Blank = lazy(() => import('../pages/protected/Blank'))
-const Charts = lazy(() => import('../pages/protected/Charts'))
+const Stats = lazy(() => import('../pages/protected/Stats'))
 const Leads = lazy(() => import('../pages/protected/Leads'))
 const Integration = lazy(() => import('../pages/protected/Integration'))
 const Calendar = lazy(() => import('../pages/protected/Calendar'))
@@ -26,19 +26,15 @@ const routes = [
   },
   {
     path: '/applications',
-    component: Providers
+    component: Applications
   },
   {
-    path: '/providers/*',
+    path: '/applications/*',
     component: Dashboard
   },
   {
     path: '/stats',
-    component: Charts
-  },
-  {
-    path: '/logs',
-    component: Providers
+    component: Stats
   },
   {
     path: '/welcome', // the url
@@ -83,10 +79,6 @@ const routes = [
   {
     path: '/integration',
     component: Integration
-  },
-  {
-    path: '/charts',
-    component: Charts
   },
   {
     path: '/404',
