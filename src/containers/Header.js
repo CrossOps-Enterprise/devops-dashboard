@@ -9,6 +9,7 @@ import { openRightDrawer } from '../features/common/rightDrawerSlice'
 import { RIGHT_DRAWER_TYPES } from '../utils/globalConstantUtil'
 
 import { NavLink, Routes, Link, useLocation } from 'react-router-dom'
+import { FaUser } from 'react-icons/fa6'
 
 function Header() {
   const dispatch = useDispatch()
@@ -19,16 +20,20 @@ function Header() {
 
   useEffect(() => {
     themeChange(false)
-    if (currentTheme === null) {
-      if (
-        window.matchMedia &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches
-      ) {
-        setCurrentTheme('dark')
-      } else {
-        setCurrentTheme('light')
-      }
-    }
+    setCurrentTheme('light')
+
+    // enable switching themes when we display the theme switch button
+
+    // if (currentTheme === null) {
+    //   if (
+    //     window.matchMedia &&
+    //     window.matchMedia('(prefers-color-scheme: dark)').matches
+    //   ) {
+    //     setCurrentTheme('dark')
+    //   } else {
+    //     setCurrentTheme('light')
+    //   }
+    // }
     // 👆 false parameter is required for react project
   }, [])
 
@@ -75,7 +80,7 @@ function Header() {
                 </select> */}
 
           {/* Light and dark theme selection toogle **/}
-          <label className='swap '>
+          {/* <label className='swap '>
             <input type='checkbox' />
             <SunIcon
               data-set-theme='light'
@@ -93,7 +98,7 @@ function Header() {
                 (currentTheme === 'light' ? 'swap-on' : 'swap-off')
               }
             />
-          </label>
+          </label> */}
 
           {/* Notification icon */}
           <button
@@ -111,9 +116,12 @@ function Header() {
 
           {/* Profile icon, opening menu on click */}
           <div className='dropdown dropdown-end ml-4'>
-            <label tabIndex={0} className='btn btn-ghost btn-circle avatar'>
-              <div className='w-10 rounded-full'>
-                <img src='https://placeimg.com/80/80/people' alt='profile' />
+            <label
+              tabIndex={0}
+              className='btn btn-ghost btn-circle rounded-full flex items-center justify-center'>
+              <div className='rounded-full flex items-center justify-center border border-indigo-500 overflow-hidden'>
+                <FaUser size={30} />
+                {/* <img src='https://placeimg.com/80/80/people' alt='profile' /> */}
               </div>
             </label>
             <ul
@@ -122,12 +130,12 @@ function Header() {
               <li className='justify-between'>
                 <Link to={'/app/settings-profile'}>
                   Profile Settings
-                  <span className='badge'>New</span>
+                  {/* <span className='badge'>New</span> */}
                 </Link>
               </li>
-              <li className=''>
+              {/* <li className=''>
                 <Link to={'/app/settings-billing'}>Bill History</Link>
-              </li>
+              </li> */}
               <div className='divider mt-0 mb-0'></div>
               <li>
                 <a onClick={logoutUser}>Logout</a>
