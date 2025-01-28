@@ -1,6 +1,13 @@
 import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ReactFlow, useEdgesState, addEdge, useNodesState } from '@xyflow/react'
+import {
+  ReactFlow,
+  useEdgesState,
+  addEdge,
+  useNodesState,
+  Position,
+  Handle
+} from '@xyflow/react'
 
 import DashboardStats from './components/DashboardStats'
 
@@ -10,6 +17,7 @@ import CreditCardIcon from '@heroicons/react/24/outline/CreditCardIcon'
 
 import '@xyflow/react/dist/style.css'
 import { INITIAL_EDGES, INITIAL_NODES } from '../../utils/dummyData'
+import { FaServer, FaUser } from 'react-icons/fa6'
 
 const statsData = [
   {
@@ -34,7 +42,54 @@ const statsData = [
 
 const cloud = 'AWS'
 
+function CustomAreaNode({ data, isConnectable }) {
+  const { label, icon, description } = data
+  return (
+    <>
+      <div className='h-[500px] w-[500px] bg-gray-100 rounded-md shadow-md flex flex-col items-start p-2'>
+        <div className='flex items-center justify-center mb-2'>
+          <FaServer /> <span className='font-bold ml-1'>{label}</span>
+        </div>
+        <div className='text-sm text-gray-500'>{description}</div>
+      </div>
+    </>
+  )
+}
+
+function CustomNode({ data, isConnectable }) {
+  const { label, icon, description } = data
+  return (
+    <>
+      <Handle
+        type='target'
+        position={Position.Left}
+        onConnect={(params) => console.log('handle onConnect', params)}
+        isConnectable={isConnectable}
+      />
+
+      <div className='h-[100px] w-[200px] bg-indigo-100 rounded-md shadow-md flex flex-col items-start p-2'>
+        <div className='flex items-center justify-center mb-2'>
+          <FaServer /> <span className='font-bold ml-1'>{label}</span>
+        </div>
+        <div className='text-sm text-gray-500'>{description}</div>
+      </div>
+
+      <Handle
+        type='source'
+        position={Position.Bottom}
+        onConnect={(params) => console.log('handle onConnect', params)}
+        isConnectable={isConnectable}
+      />
+    </>
+  )
+}
+
 function Dashboard() {
+  const nodeTypes = {
+    custom: CustomNode,
+    customArea: CustomAreaNode
+  }
+
   const navigate = useNavigate()
   const [nodes, setNodes, onNodesChange] = useNodesState(INITIAL_NODES)
   const [edges, setEdges, onEdgesChange] = useEdgesState(INITIAL_EDGES)
@@ -96,16 +151,14 @@ function Dashboard() {
             )}
           </div>
         </div>
-        <div
-          className=' shadow-md rounded-lg lg:ml-4 lg:mt-0 flex-grow h-[75%] pb-10'
-          style={{
-            border: '1px solid blue',
-            borderRadius: '5px'
-          }}>
-          <div className='text-center font-bold mb-4'>{cloud}</div>
+        <div className='shadow-md rounded-lg lg:ml-4 lg:mt-0 flex-grow h-[75%] border-2 border-indigo-500'>
           <ReactFlow
             nodes={nodes}
+            style={{
+              backgroundColor: 'white'
+            }}
             edges={edges}
+            nodeTypes={nodeTypes}
             onConnect={onConnect}
             onNodeClick={onNodeClick}
             onNodesChange={onNodesChange}
