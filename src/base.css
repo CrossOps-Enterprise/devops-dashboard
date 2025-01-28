@@ -1,0 +1,29 @@
+:root {
+  --color-hd1: #05f;
+  --color-help: #08f;
+  --color-hl1: #f50;
+  --color-hl1a: #f504;
+  --color-hl2: #40d;
+  --color-hl2a: #40d4;
+  --color-hl3: #888;
+  --color-hl3a: #8884;
+  --color-bg1: #fff;
+  --color-bg2: #ddd;
+  --color-bg3: #ccc;
+  --color-brd: #111;
+  --color-tx1: #000;
+  --color-tx2: #fff;
+  --color-tx3: #444;
+  --color-red: #f00;
+  --color-gre: #0f0;
+  --color-bro: #f60;
+}
+
+html {
+  font-family: 'Arial', sans-serif;
+  background-color: var(--color-bg2);
+}
+
+a {
+  text-decoration: none;
+}
