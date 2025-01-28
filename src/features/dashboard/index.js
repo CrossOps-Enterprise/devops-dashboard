@@ -17,7 +17,9 @@ import CreditCardIcon from '@heroicons/react/24/outline/CreditCardIcon'
 
 import '@xyflow/react/dist/style.css'
 import { INITIAL_EDGES, INITIAL_NODES } from '../../utils/dummyData'
-import { FaServer, FaUser } from 'react-icons/fa6'
+import { FaDatabase, FaServer, FaUser } from 'react-icons/fa6'
+import { useState } from 'react'
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa'
 
 const statsData = [
   {
@@ -46,7 +48,7 @@ function CustomAreaNode({ data, isConnectable }) {
   const { label, icon, description } = data
   return (
     <>
-      <div className='h-[500px] w-[500px] bg-gray-100 rounded-md shadow-md flex flex-col items-start p-2'>
+      <div className='h-[500px] w-[800px] bg-gray-100 rounded-md shadow-md flex flex-col items-start p-2'>
         <div className='flex items-center justify-center mb-2'>
           <FaServer /> <span className='font-bold ml-1'>{label}</span>
         </div>
@@ -56,26 +58,36 @@ function CustomAreaNode({ data, isConnectable }) {
   )
 }
 
+function VerticalAreaNode({}) {
+  return (
+    <div className='flex flex-col p-2 bg-gray-300 rounded-md shadow-md h-[400px] w-[200px]'>
+      <div className='font-bold flex items-center'>
+        <FaServer /> &nbsp;Instances
+      </div>
+    </div>
+  )
+}
+
 function CustomNode({ data, isConnectable }) {
-  const { label, icon, description } = data
+  const { label, icon: Icon, description, status } = data
+
   return (
     <>
-      <Handle
-        type='target'
-        position={Position.Left}
-        onConnect={(params) => console.log('handle onConnect', params)}
-        isConnectable={isConnectable}
-      />
-
-      <div className='h-[100px] w-[200px] bg-indigo-100 rounded-md shadow-md flex flex-col items-start p-2'>
-        <div className='flex items-center justify-center mb-2'>
-          <FaServer /> <span className='font-bold ml-1'>{label}</span>
+      <div className='h-auto w-[180px] bg-indigo-100 rounded-md shadow-md flex flex-col items-center p-2'>
+        <div className='flex items-center justify-between w-full'>
+          <div className='flex items-center'>
+            <Icon /> <span className='ml-1'>{label}</span>
+          </div>
+          <div
+            className={`w-3 h-3 rounded-full ${
+              status?.toLowerCase() === 'active' ? 'bg-green-500' : 'bg-red-500'
+            }`}></div>
         </div>
-        <div className='text-sm text-gray-500'>{description}</div>
+        {/* <div className='text-sm text-gray-500'>{description}</div> */}
       </div>
 
       <Handle
-        type='source'
+        type='target'
         position={Position.Bottom}
         onConnect={(params) => console.log('handle onConnect', params)}
         isConnectable={isConnectable}
@@ -87,6 +99,7 @@ function CustomNode({ data, isConnectable }) {
 function Dashboard() {
   const nodeTypes = {
     custom: CustomNode,
+    verticalArea: VerticalAreaNode,
     customArea: CustomAreaNode
   }
 
@@ -99,10 +112,10 @@ function Dashboard() {
   }, [])
 
   const onNodeClick = (event, node) => {
-    if (!node.id.includes('ec')) {
-      return
-    }
-    navigate(`/app/stats/?id=${node.id}`)
+    // if (!node.id.includes('ec')) {
+    //   return
+    // }
+    // navigate(`/app/stats/?id=${node.id}`)
   }
 
   return (

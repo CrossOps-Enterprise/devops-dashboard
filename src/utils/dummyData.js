@@ -1,4 +1,5 @@
 const moment = require('moment')
+const { FaServer, FaArrowRight } = require('react-icons/fa6')
 
 module.exports = Object.freeze({
   CALENDAR_INITIAL_EVENTS: [
@@ -252,15 +253,56 @@ module.exports = Object.freeze({
       draggable: false
     },
     {
-      id: 'ec1',
+      id: 'instances',
       extent: 'parent',
       parentId: 'main-group',
-      type: 'custom',
+      type: 'verticalArea',
       data: {
-        label: 'Node 1',
+        status: 'active',
+        icon: FaServer,
+        label: 'Instance #1',
         description: 'EC2 instance running inside of AWS cloud'
       },
-      position: { x: 250, y: 5 }
+      position: { x: 20, y: 50 }
+    },
+    {
+      id: 'ec1',
+      extent: 'parent',
+      parentId: 'instances',
+      type: 'custom',
+      data: {
+        status: 'active',
+        icon: FaArrowRight,
+        label: 'EC2-Node',
+        description: 'EC2 instance running inside of AWS cloud'
+      },
+      position: { x: 10, y: 50 }
+    },
+    {
+      id: 'ec2',
+      extent: 'parent',
+      parentId: 'instances',
+      type: 'custom',
+      data: {
+        status: 'active',
+        icon: FaArrowRight,
+        label: 'EC2-Node',
+        description: 'EC2 instance running inside of AWS cloud'
+      },
+      position: { x: 10, y: 100 }
+    },
+    {
+      id: 'ec3',
+      extent: 'parent',
+      parentId: 'instances',
+      type: 'custom',
+      data: {
+        status: 'active',
+        icon: FaArrowRight,
+        label: 'EC2-Node',
+        description: 'EC2 instance running inside of AWS cloud'
+      },
+      position: { x: 10, y: 150 }
     }
   ],
   // INITIAL_NODES: [
