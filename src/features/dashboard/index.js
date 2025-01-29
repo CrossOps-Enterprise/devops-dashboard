@@ -209,8 +209,8 @@ function CustomGroup({ data, isConnectable }) {
   return (
     <>
       <div className='h-[500px] w-[500px]'>
-        <div className='px-2 py-1 text-xs font-bold'>{label}</div>
-        <div className='h-[300px] w-[350px] rounded-md shadow-md flex flex-col items-center p-2 border-dashed border-2 border-yellow-500' />
+        <div className='font-bold mb-1'>{label}</div>
+        <div className='h-[300px] w-[350px] rounded-md shadow-md flex flex-col items-center p-2 border-dashed border-4 border-yellow-500' />
       </div>
     </>
   )

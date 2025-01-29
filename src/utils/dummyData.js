@@ -258,7 +258,7 @@ module.exports = Object.freeze({
       draggable: false
     },
     {
-      id: 'karaken',
+      id: 'kraken',
       extent: 'parent',
       parentId: 'jioa',
       type: 'subNode',
@@ -266,7 +266,7 @@ module.exports = Object.freeze({
       data: {
         status: 'active',
         icon: FaArrowRight,
-        label: 'KarakenD API Gateway',
+        label: 'KrakenD API Gateway',
         handlePosition1: 'right',
         handlePosition2: 'right'
       },
@@ -335,7 +335,7 @@ module.exports = Object.freeze({
       position: { x: 450, y: 300 }
     },
     {
-      id: 'karakenAPI',
+      id: 'krakenApi',
       extent: 'parent',
       parentId: 'jioa',
       type: 'connectingNode',
@@ -345,7 +345,7 @@ module.exports = Object.freeze({
         icon: FaArrowRight,
         handlePosition1: 'bottom',
         handlePosition2: 'top',
-        label: 'Demeter Connected to KaraKen'
+        label: 'Demeter Connected to Kraken'
       },
       position: { x: 1000, y: 200 }
     }
@@ -371,15 +371,15 @@ module.exports = Object.freeze({
     {
       id: '3',
       source: 'dioes',
-      target: 'karakenAPI',
+      target: 'krakenApi',
       animated: true,
       label: '',
       type: 'smoothstep'
     },
     {
       id: '4',
-      source: 'karakenAPI',
-      target: 'karaken',
+      source: 'krakenApi',
+      target: 'kraken',
       animated: true,
       label: '',
       type: 'smoothstep'
