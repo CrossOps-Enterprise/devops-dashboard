@@ -1,3 +1,4 @@
+const { MarkerType } = require('@xyflow/react')
 const moment = require('moment')
 const {
   FaServer,
@@ -5,6 +6,19 @@ const {
   FaGlobe,
   FaNetworkWired
 } = require('react-icons/fa6')
+
+const customMarker = {
+  markerEnd: {
+    type: MarkerType.ArrowClosed,
+    width: 15,
+    height: 15,
+    color: '#FF0072'
+  },
+  style: {
+    strokeWidth: 2,
+    stroke: '#FF0072'
+  }
+}
 
 module.exports = Object.freeze({
   CALENDAR_INITIAL_EVENTS: [
@@ -261,16 +275,17 @@ module.exports = Object.freeze({
       id: 'kraken',
       extent: 'parent',
       parentId: 'jioa',
-      type: 'subNode',
+      type: 'custom',
       draggable: false,
       data: {
         status: 'active',
         icon: FaArrowRight,
-        label: 'KrakenD API Gateway',
+        label: 'KrakenD',
+        description: 'API gateway to every service',
         handlePosition1: 'right',
         handlePosition2: 'right'
       },
-      position: { x: 700, y: 50 }
+      position: { x: 1250, y: 50 }
     },
     {
       id: 'jiods',
@@ -358,7 +373,8 @@ module.exports = Object.freeze({
       target: 'demeterAPI',
       animated: true,
       label: '',
-      type: 'smoothstep'
+      type: 'smoothstep',
+      ...customMarker
     },
     {
       id: '2',
@@ -366,7 +382,8 @@ module.exports = Object.freeze({
       target: 'dioes',
       animated: true,
       label: '',
-      type: 'smoothstep'
+      type: 'smoothstep',
+      ...customMarker
     },
     {
       id: '3',
@@ -374,7 +391,8 @@ module.exports = Object.freeze({
       target: 'krakenApi',
       animated: true,
       label: '',
-      type: 'smoothstep'
+      type: 'smoothstep',
+      ...customMarker
     },
     {
       id: '4',
@@ -382,7 +400,8 @@ module.exports = Object.freeze({
       target: 'kraken',
       animated: true,
       label: '',
-      type: 'smoothstep'
+      type: 'smoothstep',
+      ...customMarker
     }
   ]
 })
