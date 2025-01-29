@@ -1,5 +1,5 @@
 const moment = require('moment')
-const { FaServer, FaArrowRight } = require('react-icons/fa6')
+const { FaServer, FaArrowRight, FaGlobe } = require('react-icons/fa6')
 
 module.exports = Object.freeze({
   CALENDAR_INITIAL_EVENTS: [
@@ -246,140 +246,131 @@ module.exports = Object.freeze({
 
   INITIAL_NODES: [
     {
-      id: 'main-group',
-      data: { label: 'Region: us-east-1 (ohio)' },
+      id: 'jioa',
+      data: { label: 'One Diversified Production', icon: FaGlobe },
       position: { x: 50, y: 20 },
       type: 'customArea',
       draggable: false
     },
     {
-      id: 'instances',
+      id: 'karaken',
       extent: 'parent',
-      parentId: 'main-group',
-      type: 'verticalArea',
-      data: {
-        status: 'active',
-        icon: FaServer,
-        label: 'Instance #1',
-        description: 'EC2 instance running inside of AWS cloud'
-      },
-      position: { x: 20, y: 50 }
-    },
-    {
-      id: 'ec1',
-      extent: 'parent',
-      parentId: 'instances',
-      type: 'custom',
+      parentId: 'jioa',
+      type: 'subNode',
+      draggable: false,
       data: {
         status: 'active',
         icon: FaArrowRight,
-        label: 'EC2-Node',
-        description: 'EC2 instance running inside of AWS cloud'
+        label: 'KarakenD API Gateway',
+        handlePosition1: 'right',
+        handlePosition2: 'right'
+      },
+      position: { x: 700, y: 50 }
+    },
+    {
+      id: 'jiods',
+      extent: 'parent',
+      parentId: 'jioa',
+      type: 'custom',
+      draggable: false,
+      data: {
+        status: 'active',
+        icon: FaArrowRight,
+        label: 'Jupiter',
+        description: 'Intelligent Deployement Services'
+      },
+      position: { x: 50, y: 300 }
+    },
+    {
+      id: 'ce',
+      extent: 'parent',
+      parentId: 'jioa',
+      type: 'customGroup',
+      draggable: false,
+      data: {
+        label: 'Customer Environment'
+      },
+      position: { x: 700, y: 280 }
+    },
+    {
+      id: 'dioes',
+      extent: 'parent',
+      parentId: 'ce',
+      type: 'subNode',
+      draggable: false,
+      data: {
+        status: 'active',
+        icon: FaArrowRight,
+        handlePosition1: 'left',
+        handlePosition2: 'right',
+        label: 'Demeter',
+        description: 'Intelligent Orchestration Environment Services'
       },
       position: { x: 10, y: 50 }
     },
     {
-      id: 'ec2',
+      id: 'dmeterAPI',
       extent: 'parent',
-      parentId: 'instances',
-      type: 'custom',
+      parentId: 'jioa',
+      type: 'connectingNode',
+      draggable: false,
       data: {
         status: 'active',
         icon: FaArrowRight,
-        label: 'EC2-Node',
-        description: 'EC2 instance running inside of AWS cloud'
+        handlePosition2: 'right',
+        label: 'Demeter API'
       },
-      position: { x: 10, y: 100 }
+      position: { x: 450, y: 300 }
     },
     {
-      id: 'ec3',
+      id: 'karakenAPI',
       extent: 'parent',
-      parentId: 'instances',
-      type: 'custom',
+      parentId: 'jioa',
+      type: 'connectingNode',
+      draggable: false,
       data: {
         status: 'active',
         icon: FaArrowRight,
-        label: 'EC2-Node',
-        description: 'EC2 instance running inside of AWS cloud'
+        handlePosition1: 'bottom',
+        handlePosition2: 'top',
+        label: 'Dmeter Connected to KaraKen'
       },
-      position: { x: 10, y: 150 }
+      position: { x: 1000, y: 200 }
     }
   ],
-  // INITIAL_NODES: [
-  //   {
-  //     id: 'main-group',
-  //     data: { label: 'Region: us-east-1 (ohio)' },
-  //     position: { x: 50, y: 20 },
-  //     style: { width: 650, height: 400, fontWeight: 'bold' },
-  //     draggable: false
-  //   },
-  //   {
-  //     id: 'vpc1',
-  //     data: { label: 'VPC 1\nCIDR: 10.0.0.0/16' },
-  //     position: { x: 20, y: 50 },
-  //     parentId: 'main-group',
-  //     style: { width: 200, height: 250 },
-  //     draggable: false
-  //   },
-  //   {
-  //     id: 'vpc2',
-  //     data: { label: 'VPC 2\nCIDR: 192.168.0.0/16' },
-  //     position: { x: 400, y: 50 },
-  //     parentId: 'main-group',
-  //     style: { width: 200, height: 250 },
-  //     draggable: false
-  //   },
-  //   {
-  //     id: 'ec1',
-  //     sourcePosition: 'bottom',
-  //     type: 'input',
-  //     data: { label: 'EC2 Instance 1\nType: t2.micro\nStatus: Running' },
-  //     position: { x: 20, y: 40 },
-  //     parentId: 'vpc1',
-  //     extent: 'parent',
-  //     style: { whiteSpace: 'pre-wrap' }
-  //   },
-  //   {
-  //     id: 'ec2',
-  //     type: 'input',
-  //     sourcePosition: 'top',
-  //     data: { label: 'EC2 Instance 2\nType: t2.micro\nStatus: Stopped' },
-  //     position: { x: 20, y: 150 },
-  //     parentId: 'vpc1',
-  //     extent: 'parent',
-  //     style: { whiteSpace: 'pre-wrap' }
-  //   },
-  //   {
-  //     id: 'ec3',
-  //     targetPosition: 'bottom',
-  //     data: { label: 'EC2 Instance 3\nType: t2.micro\nStatus: Running' },
-  //     position: { x: 20, y: 40 },
-  //     parentId: 'vpc2',
-  //     style: { whiteSpace: 'pre-wrap' }
-  //   },
-  //   {
-  //     id: 'ec4',
-  //     data: { label: 'EC2 Instance 4\nType: t2.micro\nStatus: Stopped' },
-  //     position: { x: 20, y: 150 },
-  //     parentId: 'vpc2',
-  //     style: { whiteSpace: 'pre-wrap' }
-  //   },
-  //   {
-  //     id: 'db1',
-  //     targetPosition: 'left',
-  //     sourcePosition: 'right',
-  //     data: { label: 'Database 1\nType: RDS\nStatus: Available' },
-  //     position: { x: 235, y: 150 },
-  //     parentId: 'main-group',
-  //     extent: 'parent',
-  //     style: { whiteSpace: 'pre-wrap' }
-  //   }
-  // ],
 
   INITIAL_EDGES: [
-    { id: '1-1', source: 'ec1', target: 'db1', animated: true },
-    { id: '1-2', source: 'ec2', target: 'db1', animated: true },
-    { id: '1-3', source: 'db1', target: 'ec3', animated: true },
-    { id: '1-4', source: 'db1', target: 'ec4', animated: true }
+    {
+      id: '1',
+      source: 'jiods',
+      target: 'dmeterAPI',
+      animated: true,
+      label: '',
+      type: 'smoothstep'
+    },
+    {
+      id: '2',
+      source: 'dmeterAPI',
+      target: 'dioes',
+      animated: true,
+      label: '',
+      type: 'smoothstep'
+    },
+    {
+      id: '3',
+      source: 'dioes',
+      target: 'karakenAPI',
+      animated: true,
+      label: '',
+      type: 'smoothstep'
+    },
+    {
+      id: '4',
+      source: 'karakenAPI',
+      target: 'karaken',
+      animated: true,
+      label: '',
+      type: 'smoothstep'
+    }
   ]
 })
