@@ -14,9 +14,7 @@ import { FaUser } from 'react-icons/fa6'
 function Header() {
   const dispatch = useDispatch()
   const { noOfNotifications, pageTitle } = useSelector((state) => state.header)
-  const [currentTheme, setCurrentTheme] = useState(
-    localStorage.getItem('theme')
-  )
+  const [currentTheme, setCurrentTheme] = useState('light')
 
   useEffect(() => {
     themeChange(false)
@@ -24,16 +22,16 @@ function Header() {
 
     // enable switching themes when we display the theme switch button
 
-    if (currentTheme === null) {
-      if (
-        window.matchMedia &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches
-      ) {
-        setCurrentTheme('dark')
-      } else {
-        setCurrentTheme('light')
-      }
-    }
+    // if (currentTheme === null) {
+    //   if (
+    //     window.matchMedia &&
+    //     window.matchMedia('(prefers-color-scheme: dark)').matches
+    //   ) {
+    //     setCurrentTheme('dark')
+    //   } else {
+    //     setCurrentTheme('light')
+    //   }
+    // }
     // 👆 false parameter is required for react project
   }, [])
 
@@ -80,7 +78,7 @@ function Header() {
                 </select> */}
 
           {/* Light and dark theme selection toogle **/}
-          <label className='swap '>
+          {/* <label className='swap '>
             <input type='checkbox' />
             <SunIcon
               data-set-theme='light'
@@ -98,7 +96,7 @@ function Header() {
                 (currentTheme === 'light' ? 'swap-on' : 'swap-off')
               }
             />
-          </label>
+          </label> */}
 
           {/* Notification icon */}
           <button
