@@ -48,7 +48,7 @@ function CustomAreaNode({ data, isConnectable }) {
   const { label, icon: Icon, description } = data
   return (
     <>
-      <div className='h-[600px] min-w-[1200px] bg-gray-100 rounded-md shadow-md flex flex-col items-start p-2'>
+      <div className='h-[1200px] min-w-[1800px] bg-gray-100 rounded-md shadow-md flex flex-col items-start p-2'>
         <div className='flex items-center justify-center mb-2'>
           <Icon /> <span className='font-bold ml-1'>{label}</span>
         </div>
@@ -69,29 +69,58 @@ function VerticalAreaNode({}) {
 }
 
 function CustomNode({ data, isConnectable }) {
-  const { label, icon: Icon, description, status } = data
+  const { label, icon: Icon, description, status, services, style = {} } = data
+  const { height, width } = style
+
+  const heightAndWidthClasses = `h-[${height || '250'}px] w-[${width || '300'}px]`
 
   return (
     <>
-      <div className='h-[250px] w-[300px] bg-indigo-100 rounded-md shadow-md flex flex-col p-2'>
-        <div className='flex items-center justify-between w-full'>
-          <div className='flex items-center w-4/5'>
-            <span className=''>{label}</span>
-          </div>
-          <div
-            className={`w-3 h-3 rounded-full ${
-              status?.toLowerCase() === 'active' ? 'bg-green-500' : 'bg-red-500'
-            }`}></div>
-        </div>
-        <div className='text-gray-500 w-full'>{description}</div>
-      </div>
-
       <Handle
         type='source'
-        position={Position.Bottom}
+        position={Position.Right}
         onConnect={(params) => console.log('handle onConnect', params)}
         isConnectable={isConnectable}
       />
+
+      <Handle
+        type='target'
+        position={Position.Left}
+        onConnect={(params) => console.log('handle onConnect', params)}
+        isConnectable={isConnectable}
+      />
+
+      <div
+        className={`${heightAndWidthClasses} bg-indigo-100 rounded-md shadow-md flex flex-col`}>
+        <div className='p-2'>
+          <div className='flex items-center justify-between w-full'>
+            <div className='flex items-center w-4/5'>
+              <Icon />
+              <span className='ml-1 font-bold'>{label}</span>
+            </div>
+            <div
+              className={`w-3 h-3 rounded-full ${
+                status?.toLowerCase() === 'active'
+                  ? 'bg-green-500'
+                  : 'bg-red-500'
+              }`}></div>
+          </div>
+          <div className='text-gray-500 w-full'>{description}</div>
+        </div>
+        {Boolean(services?.length) && (
+          <div className='border-t border-black my-2'></div>
+        )}
+
+        {services?.map((item) => (
+          <>
+            <div className='flex items-center w-full justify-center flex-col'>
+              <div className='w-[90%] border-2 border-dashed border-gray-400 p-2 mt-2'>
+                <div className='font-bold'>{item}</div>
+              </div>
+            </div>
+          </>
+        ))}
+      </div>
     </>
   )
 }
@@ -102,6 +131,7 @@ function SubNode({ data, isConnectable }) {
     icon: Icon,
     description,
     status,
+    style,
     handlePosition1,
     handlePosition2
   } = data
@@ -149,10 +179,12 @@ function ConnectingNode({ data, isConnectable }) {
 
   return (
     <>
-      <div className='h-[80px] w-[150px] bg-orange-100 rounded-md shadow-md flex flex-col items-center justify-center p-2'>
-        <div className='text-center'>
-          <span className='text-center text-xs'>{label}</span>
-        </div>
+      <div className='h-[80px] w-[180px] bg-orange-100 rounded-md shadow-md flex flex-col p-2'>
+        <span className='text-xs font-bold'>{label}</span>
+        <br />
+        <span className={`text-gray-500 text-xs flex items-center`}>
+          {description}
+        </span>
       </div>
 
       <Handle
@@ -176,9 +208,9 @@ function CustomGroup({ data, isConnectable }) {
 
   return (
     <>
-      <div className='h-[250px] w-[300px]'>
+      <div className='h-[500px] w-[500px]'>
         <div className='px-2 py-1 text-xs font-bold'>{label}</div>
-        <div className='h-[250px] w-[300px] rounded-md shadow-md flex flex-col items-center p-2 border-dashed border-2 border-yellow-500' />
+        <div className='h-[300px] w-[350px] rounded-md shadow-md flex flex-col items-center p-2 border-dashed border-2 border-yellow-500' />
       </div>
     </>
   )

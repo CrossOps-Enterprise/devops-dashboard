@@ -1,5 +1,10 @@
 const moment = require('moment')
-const { FaServer, FaArrowRight, FaGlobe } = require('react-icons/fa6')
+const {
+  FaServer,
+  FaArrowRight,
+  FaGlobe,
+  FaNetworkWired
+} = require('react-icons/fa6')
 
 module.exports = Object.freeze({
   CALENDAR_INITIAL_EVENTS: [
@@ -275,9 +280,10 @@ module.exports = Object.freeze({
       draggable: false,
       data: {
         status: 'active',
-        icon: FaArrowRight,
+        icon: FaGlobe,
         label: 'Jupiter',
-        description: 'Intelligent Deployement Services'
+        services: ['S3 Storage', 'SpringBoot Application'],
+        description: 'Intelligent Orchestration Deployment Services'
       },
       position: { x: 50, y: 300 }
     },
@@ -296,20 +302,25 @@ module.exports = Object.freeze({
       id: 'dioes',
       extent: 'parent',
       parentId: 'ce',
-      type: 'subNode',
+      type: 'custom',
       draggable: false,
       data: {
+        style: {
+          // height: 200,
+          width: 280
+        },
         status: 'active',
-        icon: FaArrowRight,
+        icon: FaNetworkWired,
         handlePosition1: 'left',
         handlePosition2: 'right',
         label: 'Demeter',
-        description: 'Intelligent Orchestration Environment Services'
+        services: ['Customers S3 Storage', 'Demeter DevOps'],
+        description: 'Intelligent Orchestration via installable agents'
       },
-      position: { x: 10, y: 50 }
+      position: { x: 40, y: 50 }
     },
     {
-      id: 'dmeterAPI',
+      id: 'demeterAPI',
       extent: 'parent',
       parentId: 'jioa',
       type: 'connectingNode',
@@ -317,6 +328,7 @@ module.exports = Object.freeze({
       data: {
         status: 'active',
         icon: FaArrowRight,
+        description: 'Takes over deployment, management, logging etc',
         handlePosition2: 'right',
         label: 'Demeter API'
       },
@@ -333,7 +345,7 @@ module.exports = Object.freeze({
         icon: FaArrowRight,
         handlePosition1: 'bottom',
         handlePosition2: 'top',
-        label: 'Dmeter Connected to KaraKen'
+        label: 'Demeter Connected to KaraKen'
       },
       position: { x: 1000, y: 200 }
     }
@@ -343,14 +355,14 @@ module.exports = Object.freeze({
     {
       id: '1',
       source: 'jiods',
-      target: 'dmeterAPI',
+      target: 'demeterAPI',
       animated: true,
       label: '',
       type: 'smoothstep'
     },
     {
       id: '2',
-      source: 'dmeterAPI',
+      source: 'demeterAPI',
       target: 'dioes',
       animated: true,
       label: '',
