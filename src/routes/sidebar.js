@@ -1,4 +1,5 @@
 /** Icons are imported separatly to reduce build time */
+import ComputerDesktopIcon from '@heroicons/react/24/outline/ComputerDesktopIcon'
 import BoltIcon from '@heroicons/react/24/outline/BoltIcon'
 // import Squares2X2Icon from '@heroicons/react/24/outline/Squares2X2Icon'
 // import DocumentTextIcon from '@heroicons/react/24/outline/DocumentTextIcon'
@@ -22,11 +23,6 @@ const iconClasses = `h-6 w-6`
 const submenuIconClasses = `h-5 w-5`
 
 const routes = [
-  {
-    path: '/app/applications/aws', // url
-    icon: <BoltIcon className={iconClasses} />, // icon component
-    name: 'Productions' // name that appear in Sidebar
-  }
   // {
   //   path: '/app/leads', // url
   //   icon: <InboxArrowDownIcon className={iconClasses} />, // icon component
@@ -48,38 +44,18 @@ const routes = [
   //   name: 'Calendar' // name that appear in Sidebar
   // },
 
-  // {
-  //   path: '', //no url needed as this has submenu
-  //   icon: <DocumentDuplicateIcon className={`${iconClasses} inline`} />, // icon component
-  //   name: 'Pages', // name that appear in Sidebar
-  //   submenu: [
-  //     {
-  //       path: '/login',
-  //       icon: <ArrowRightOnRectangleIcon className={submenuIconClasses} />,
-  //       name: 'Login'
-  //     },
-  //     {
-  //       path: '/register', //url
-  //       icon: <UserIcon className={submenuIconClasses} />, // icon component
-  //       name: 'Register' // name that appear in Sidebar
-  //     },
-  //     {
-  //       path: '/forgot-password',
-  //       icon: <KeyIcon className={submenuIconClasses} />,
-  //       name: 'Forgot Password'
-  //     },
-  //     {
-  //       path: '/app/blank',
-  //       icon: <DocumentIcon className={submenuIconClasses} />,
-  //       name: 'Blank Page'
-  //     },
-  //     {
-  //       path: '/app/404',
-  //       icon: <ExclamationTriangleIcon className={submenuIconClasses} />,
-  //       name: '404'
-  //     }
-  //   ]
-  // },
+  {
+    path: '', //no url needed as this has submenu
+    icon: <ComputerDesktopIcon className={`${iconClasses} inline`} />, // icon component
+    name: 'Productions', // name that appear in Sidebar
+    submenu: [
+      {
+        path: '/app/applications/production1', // url
+        icon: <BoltIcon className={iconClasses} />, // icon component
+        name: 'Production One' // name that appear in Sidebar
+      }
+    ]
+  }
   // {
   //   path: '', //no url needed as this has submenu
   //   icon: <Cog6ToothIcon className={`${iconClasses} inline`} />, // icon component

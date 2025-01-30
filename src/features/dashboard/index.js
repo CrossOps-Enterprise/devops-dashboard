@@ -17,9 +17,7 @@ import CreditCardIcon from '@heroicons/react/24/outline/CreditCardIcon'
 
 import '@xyflow/react/dist/style.css'
 import { INITIAL_EDGES, INITIAL_NODES } from '../../utils/dummyData'
-import { FaDatabase, FaServer, FaUser } from 'react-icons/fa6'
-import { useState } from 'react'
-import { FaChevronDown, FaChevronUp } from 'react-icons/fa'
+import { FaServer } from 'react-icons/fa6'
 
 const statsData = [
   {
@@ -42,15 +40,14 @@ const statsData = [
   }
 ]
 
-const cloud = 'AWS'
-
 function CustomAreaNode({ data, isConnectable }) {
   const { label, icon: Icon, description } = data
   return (
     <>
       <div className='h-[1200px] min-w-[1800px] bg-gray-100 rounded-md shadow-md flex flex-col items-start p-2'>
         <div className='flex items-center justify-center mb-2'>
-          <Icon /> <span className='font-bold ml-1'>{label}</span>
+          <Icon />{' '}
+          <span className='font-bold ml-1 text-lg text-tx1'>{label}</span>
         </div>
         <div className='text-sm text-gray-500'>{description}</div>
       </div>
@@ -60,7 +57,7 @@ function CustomAreaNode({ data, isConnectable }) {
 
 function VerticalAreaNode({}) {
   return (
-    <div className='flex flex-col p-2 bg-gray-300 rounded-md shadow-md h-[400px] w-[200px]'>
+    <div className='flex flex-col p-2 bg-hl3a-300 rounded-md shadow-md h-[400px] w-[200px]'>
       <div className='font-bold flex items-center'>
         <FaServer /> &nbsp;Instances
       </div>
@@ -91,7 +88,7 @@ function CustomNode({ data, isConnectable }) {
       />
 
       <div
-        className={`${heightAndWidthClasses} bg-indigo-100 rounded-md shadow-md flex flex-col`}>
+        className={`${heightAndWidthClasses} bg-hl3a rounded-md shadow-md flex flex-col pb-2`}>
         <div className='p-2'>
           <div className='flex items-center justify-between w-full'>
             <div className='flex items-center w-4/5'>
@@ -138,7 +135,7 @@ function SubNode({ data, isConnectable }) {
 
   return (
     <>
-      <div className='h-[200px] w-[280px] bg-indigo-100 rounded-md shadow-md flex flex-col p-2'>
+      <div className='h-[200px] w-[280px] bg-hl1a rounded-md shadow-md flex flex-col p-2'>
         <div className='flex items-start justify-between w-full text-xs font-semibold'>
           <div className='flex items-center w-4/5'>
             <span className=''>{label}</span>
@@ -148,7 +145,7 @@ function SubNode({ data, isConnectable }) {
               status?.toLowerCase() === 'active' ? 'bg-green-500' : 'bg-red-500'
             }`}></div>
         </div>
-        <div className='text-gray-500 w-full'>{description}</div>
+        <div className='text-tx1 w-full'>{description}</div>
       </div>
 
       <Handle
@@ -210,7 +207,7 @@ function CustomGroup({ data, isConnectable }) {
     <>
       <div className='h-[500px] w-[500px]'>
         <div className='font-bold mb-1'>{label}</div>
-        <div className='h-[300px] w-[350px] rounded-md shadow-md flex flex-col items-center p-2 border-dashed border-4 border-yellow-500' />
+        <div className='h-[280px] w-[350px] rounded-md shadow-md flex flex-col items-center p-2 border-dashed border-4 border-bro' />
       </div>
     </>
   )

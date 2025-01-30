@@ -45,7 +45,7 @@ function App() {
             path='*'
             element={
               <Navigate
-                to={token ? '/app/applications/aws' : '/login'}
+                to={token ? '/app/applications/production1' : '/login'}
                 replace
               />
             }
