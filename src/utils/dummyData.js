@@ -1,4 +1,24 @@
+const { MarkerType } = require('@xyflow/react')
 const moment = require('moment')
+const {
+  FaServer,
+  FaArrowRight,
+  FaGlobe,
+  FaNetworkWired
+} = require('react-icons/fa6')
+
+const customMarker = {
+  markerEnd: {
+    type: MarkerType.ArrowClosed,
+    width: 15,
+    height: 15,
+    color: '#FF0072'
+  },
+  style: {
+    strokeWidth: 2,
+    stroke: '#FF0072'
+  }
+}
 
 module.exports = Object.freeze({
   CALENDAR_INITIAL_EVENTS: [
@@ -245,79 +265,143 @@ module.exports = Object.freeze({
 
   INITIAL_NODES: [
     {
-      id: 'main-group',
-      data: { label: 'Region: us-east-1 (ohio)' },
+      id: 'jioa',
+      data: { label: 'One Diversified Production', icon: FaGlobe },
       position: { x: 50, y: 20 },
-      style: { width: 650, height: 400, fontWeight: 'bold' },
+      type: 'customArea',
       draggable: false
     },
     {
-      id: 'vpc1',
-      data: { label: 'VPC 1\nCIDR: 10.0.0.0/16' },
-      position: { x: 20, y: 50 },
-      parentId: 'main-group',
-      style: { width: 200, height: 250 },
-      draggable: false
-    },
-    {
-      id: 'vpc2',
-      data: { label: 'VPC 2\nCIDR: 192.168.0.0/16' },
-      position: { x: 400, y: 50 },
-      parentId: 'main-group',
-      style: { width: 200, height: 250 },
-      draggable: false
-    },
-    {
-      id: 'ec1',
-      sourcePosition: 'bottom',
-      type: 'input',
-      data: { label: 'EC2 Instance 1\nType: t2.micro\nStatus: Running' },
-      position: { x: 20, y: 40 },
-      parentId: 'vpc1',
+      id: 'kraken',
       extent: 'parent',
-      style: { whiteSpace: 'pre-wrap' }
+      parentId: 'jioa',
+      type: 'custom',
+      draggable: false,
+      data: {
+        status: 'active',
+        icon: FaArrowRight,
+        label: 'KrakenD',
+        description: 'API gateway to every service',
+        handlePosition1: 'right',
+        handlePosition2: 'right'
+      },
+      position: { x: 1250, y: 50 }
     },
     {
-      id: 'ec2',
-      type: 'input',
-      sourcePosition: 'top',
-      data: { label: 'EC2 Instance 2\nType: t2.micro\nStatus: Stopped' },
-      position: { x: 20, y: 150 },
-      parentId: 'vpc1',
+      id: 'jiods',
       extent: 'parent',
-      style: { whiteSpace: 'pre-wrap' }
+      parentId: 'jioa',
+      type: 'custom',
+      draggable: false,
+      data: {
+        status: 'active',
+        icon: FaGlobe,
+        label: 'Jupiter',
+        services: ['S3 Storage', 'SpringBoot Application'],
+        description: 'Intelligent Orchestration Deployment Services'
+      },
+      position: { x: 50, y: 300 }
     },
     {
-      id: 'ec3',
-      targetPosition: 'bottom',
-      data: { label: 'EC2 Instance 3\nType: t2.micro\nStatus: Running' },
-      position: { x: 20, y: 40 },
-      parentId: 'vpc2',
-      style: { whiteSpace: 'pre-wrap' }
-    },
-    {
-      id: 'ec4',
-      data: { label: 'EC2 Instance 4\nType: t2.micro\nStatus: Stopped' },
-      position: { x: 20, y: 150 },
-      parentId: 'vpc2',
-      style: { whiteSpace: 'pre-wrap' }
-    },
-    {
-      id: 'db1',
-      targetPosition: 'left',
-      sourcePosition: 'right',
-      data: { label: 'Database 1\nType: RDS\nStatus: Available' },
-      position: { x: 235, y: 150 },
-      parentId: 'main-group',
+      id: 'ce',
       extent: 'parent',
-      style: { whiteSpace: 'pre-wrap' }
+      parentId: 'jioa',
+      type: 'customGroup',
+      draggable: false,
+      data: {
+        label: 'Customer Environment'
+      },
+      position: { x: 700, y: 280 }
+    },
+    {
+      id: 'dioes',
+      extent: 'parent',
+      parentId: 'ce',
+      type: 'custom',
+      draggable: false,
+      data: {
+        style: {
+          // height: 200,
+          width: 280
+        },
+        status: 'active',
+        icon: FaNetworkWired,
+        handlePosition1: 'left',
+        handlePosition2: 'right',
+        label: 'Demeter',
+        services: ['Customers S3 Storage', 'Demeter DevOps'],
+        description: 'Intelligent Orchestration via installable agents'
+      },
+      position: { x: 40, y: 50 }
+    },
+    {
+      id: 'demeterAPI',
+      extent: 'parent',
+      parentId: 'jioa',
+      type: 'connectingNode',
+      draggable: false,
+      data: {
+        status: 'active',
+        icon: FaArrowRight,
+        description: 'Takes over deployment, management, logging etc',
+        handlePosition2: 'right',
+        label: 'Demeter API'
+      },
+      position: { x: 450, y: 300 }
+    },
+    {
+      id: 'krakenApi',
+      extent: 'parent',
+      parentId: 'jioa',
+      type: 'connectingNode',
+      draggable: false,
+      data: {
+        status: 'active',
+        icon: FaArrowRight,
+        handlePosition1: 'bottom',
+        handlePosition2: 'top',
+        label: 'Demeter Connected to Kraken'
+      },
+      position: { x: 1000, y: 200 }
     }
   ],
 
   INITIAL_EDGES: [
-    { id: '1-1', source: 'ec1', target: 'db1', animated: true },
-    { id: '1-2', source: 'ec2', target: 'db1', animated: true },
-    { id: '1-3', source: 'db1', target: 'ec3', animated: true },
-    { id: '1-4', source: 'db1', target: 'ec4', animated: true }
+    {
+      id: '1',
+      source: 'jiods',
+      target: 'demeterAPI',
+      animated: true,
+      label: '',
+      type: 'smoothstep',
+      ...customMarker
+    },
+    {
+      id: '2',
+      source: 'demeterAPI',
+      target: 'dioes',
+      animated: true,
+      label: '',
+      type: 'smoothstep',
+      ...customMarker
+    },
+    {
+      id: '3',
+      source: 'dioes',
+      target: 'krakenApi',
+      animated: true,
+      label: '',
+      type: 'smoothstep',
+      ...customMarker
+    },
+    {
+      id: '4',
+      source: 'krakenApi',
+      target: 'kraken',
+      animated: true,
+      label: '',
+      type: 'smoothstep',
+      ...customMarker
+    }
   ]
 })
