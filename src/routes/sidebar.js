@@ -12,7 +12,7 @@ import BoltIcon from '@heroicons/react/24/outline/BoltIcon'
 // import ArrowRightOnRectangleIcon from '@heroicons/react/24/outline/ArrowRightOnRectangleIcon'
 // import UserIcon from '@heroicons/react/24/outline/UserIcon'
 // import Cog6ToothIcon from '@heroicons/react/24/outline/Cog6ToothIcon'
-// import ChartBarIcon from '@heroicons/react/24/outline/ChartBarIcon'
+import ChartBarIcon from '@heroicons/react/24/outline/ChartBarIcon'
 // import CurrencyDollarIcon from '@heroicons/react/24/outline/CurrencyDollarIcon'
 // import InboxArrowDownIcon from '@heroicons/react/24/outline/InboxArrowDownIcon'
 // import UsersIcon from '@heroicons/react/24/outline/UsersIcon'
@@ -33,11 +33,7 @@ const routes = [
   //   icon: <CurrencyDollarIcon className={iconClasses} />, // icon component
   //   name: 'Transactions' // name that appear in Sidebar
   // },
-  // {
-  //   path: '/app/charts', // url
-  //   icon: <ChartBarIcon className={iconClasses} />, // icon component
-  //   name: 'Analytics' // name that appear in Sidebar
-  // },
+
   // {
   //   path: '/app/calendar', // url
   //   icon: <CalendarDaysIcon className={iconClasses} />, // icon component
@@ -50,11 +46,16 @@ const routes = [
     name: 'Productions', // name that appear in Sidebar
     submenu: [
       {
-        path: '/app/applications/production1', // url
+        path: '/app/productions/production1', // url
         icon: <BoltIcon className={iconClasses} />, // icon component
         name: 'Production One' // name that appear in Sidebar
       }
     ]
+  },
+  {
+    path: '/app/stats', // url
+    icon: <ChartBarIcon className={iconClasses} />, // icon component
+    name: 'Analytics' // name that appear in Sidebar
   }
   // {
   //   path: '', //no url needed as this has submenu

@@ -176,7 +176,7 @@ function ConnectingNode({ data, isConnectable }) {
 
   return (
     <>
-      <div className='h-[80px] w-[180px] bg-orange-100 rounded-md shadow-md flex flex-col p-2'>
+      <div className='w-[180px] bg-orange-100 rounded-md shadow-md flex flex-col p-2'>
         <span className='text-xs font-bold'>{label}</span>
         <br />
         <span className={`text-gray-500 text-xs flex items-center`}>

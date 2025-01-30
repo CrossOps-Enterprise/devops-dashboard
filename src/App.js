@@ -41,7 +41,7 @@ function App() {
           {/* Place new routes over this */}
           <Route path='/app/*' element={<Layout />} />
 
-          <Route
+          {/* <Route
             path='*'
             element={
               <Navigate
@@ -49,7 +49,7 @@ function App() {
                 replace
               />
             }
-          />
+          /> */}
         </Routes>
       </Router>
     </>

@@ -18,10 +18,7 @@ function Header() {
 
   useEffect(() => {
     themeChange(false)
-    setCurrentTheme('light')
-
     // enable switching themes when we display the theme switch button
-
     if (currentTheme === null) {
       if (
         window.matchMedia &&

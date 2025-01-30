@@ -29,7 +29,7 @@ const routes = [
     component: Applications
   },
   {
-    path: '/applications/production1',
+    path: '/productions/production1',
     component: Dashboard
   },
   {

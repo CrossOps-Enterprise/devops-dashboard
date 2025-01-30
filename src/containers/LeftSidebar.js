@@ -22,7 +22,7 @@ function LeftSidebar() {
         </button>
 
         <li className='mb-2 font-semibold text-xl'>
-          <Link to={'/'}>SysHaven</Link>{' '}
+          <Link to={'/app/productions/production1'}>SysHaven</Link>{' '}
         </li>
         {routes.map((route, k) => {
           const isActiveLink =

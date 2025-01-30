@@ -20,6 +20,19 @@ const customMarker = {
   }
 }
 
+const greenMarker = {
+  markerEnd: {
+    type: MarkerType.ArrowClosed,
+    width: 15,
+    height: 15,
+    color: 'green'
+  },
+  style: {
+    strokeWidth: 2,
+    stroke: 'green'
+  }
+}
+
 module.exports = Object.freeze({
   CALENDAR_INITIAL_EVENTS: [
     {
@@ -360,7 +373,8 @@ module.exports = Object.freeze({
         icon: FaArrowRight,
         handlePosition1: 'bottom',
         handlePosition2: 'top',
-        label: 'Demeter Connected to Kraken'
+        label: 'KrakenD API',
+        description: 'Demeter calls home for all updates, no direct connection'
       },
       position: { x: 1000, y: 200 }
     }
@@ -392,7 +406,7 @@ module.exports = Object.freeze({
       animated: true,
       label: '',
       type: 'smoothstep',
-      ...customMarker
+      ...greenMarker
     },
     {
       id: '4',
@@ -401,7 +415,7 @@ module.exports = Object.freeze({
       animated: true,
       label: '',
       type: 'smoothstep',
-      ...customMarker
+      ...greenMarker
     }
   ]
 })
