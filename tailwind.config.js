@@ -8,24 +8,24 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        hd1: '#05f',
-        help: '#08f',
-        hl1: '#f50',
-        hl1a: '#f504',
-        hl2: '#40d',
-        hl2a: '#40d4',
-        hl3: '#888',
-        hl3a: '#8884',
-        bg1: '#fff',
-        bg2: '#ddd',
-        bg3: '#ccc',
-        brd: '#111',
-        tx1: '#000',
-        tx2: '#fff',
-        tx3: '#444',
-        red: '#f00',
-        gre: '#0f0',
-        bro: '#f60'
+        hd1: '#05f', // dark blue
+        help: '#08f', // light blue
+        hl1: '#f50', // Orange
+        hl1a: '#f504', // Orange with alpha
+        hl2: '#40d', // Purple
+        hl2a: '#40d4', // Purple with alpha
+        hl3: '#888', // Gray
+        hl3a: '#8884', // Gray with alpha
+        bg1: '#fff', // White
+        bg2: '#ddd', // Light gray
+        bg3: '#ccc', // Medium gray
+        brd: '#111', // Dark gray
+        tx1: '#000', // Black
+        tx2: '#fff', // White
+        tx3: '#444', // Dark gray
+        red: '#f00', // Red
+        gre: '#0f0', // Green
+        bro: '#f60' // Orange
       }
     }
   },

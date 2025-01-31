@@ -1,22 +1,22 @@
 :root {
-  --color-hd1: #05f;
-  --color-help: #08f;
-  --color-hl1: #f50;
-  --color-hl1a: #f504;
-  --color-hl2: #40d;
-  --color-hl2a: #40d4;
-  --color-hl3: #888;
-  --color-hl3a: #8884;
-  --color-bg1: #fff;
-  --color-bg2: #ddd;
-  --color-bg3: #ccc;
-  --color-brd: #111;
-  --color-tx1: #000;
-  --color-tx2: #fff;
-  --color-tx3: #444;
-  --color-red: #f00;
-  --color-gre: #0f0;
-  --color-bro: #f60;
+  --color-hd1: #05f; /* blue */
+  --color-help: #08f; /* blue */
+  --color-hl1: #f50; /* orange */
+  --color-hl1a: #f504; /* orange with alpha */
+  --color-hl2: #40d; /* purple */
+  --color-hl2a: #40d4; /* purple with alpha */
+  --color-hl3: #888; /* gray */
+  --color-hl3a: #8884; /* gray with alpha */
+  --color-bg1: #fff; /* white */
+  --color-bg2: #ddd; /* light gray */
+  --color-bg3: #ccc; /* gray */
+  --color-brd: #111; /* black */
+  --color-tx1: #000; /* black */
+  --color-tx2: #fff; /* white */
+  --color-tx3: #444; /* dark gray */
+  --color-red: #f00; /* red */
+  --color-gre: #0f0; /* green */
+  --color-bro: #f60; /* orange */
 }
 
 html {
