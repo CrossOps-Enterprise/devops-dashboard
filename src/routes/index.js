@@ -33,7 +33,7 @@ const routes = [
     component: Dashboard
   },
   {
-    path: '/stats',
+    path: '/stats/*',
     component: Stats
   },
   {

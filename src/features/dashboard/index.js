@@ -66,6 +66,8 @@ function VerticalAreaNode({}) {
 }
 
 function CustomNode({ data, isConnectable }) {
+  const navigate = useNavigate()
+
   const {
     label,
     icon: Icon,
@@ -78,7 +80,9 @@ function CustomNode({ data, isConnectable }) {
     handlePosition2
   } = data
   const { height, width, bg } = style
-  // const heightAndWidthClasses = `h-[${height}px] w-[${width}px] bg-${bg || 'hl3a'`
+  const onNodeClick = (id) => {
+    navigate(`/app/stats/id=${id}`)
+  }
   return (
     <>
       <Handle
@@ -118,9 +122,11 @@ function CustomNode({ data, isConnectable }) {
 
         {services?.map((item) => (
           <>
-            <div className='flex items-center w-full justify-center flex-col'>
+            <div
+              onClick={() => onNodeClick(item?.id)}
+              className='flex items-center w-full justify-center flex-col'>
               <div className='w-[90%] border-2 border-dashed border-gray-400 p-2 mt-2'>
-                <div className='font-bold'>{item}</div>
+                <div className='font-bold'>{item?.service}</div>
               </div>
             </div>
           </>

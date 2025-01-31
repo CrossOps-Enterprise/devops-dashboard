@@ -317,7 +317,10 @@ module.exports = Object.freeze({
         status: 'active',
         icon: FaGlobe,
         label: 'Jupiter',
-        services: ['S3 Storage', 'SpringBoot Application'],
+        services: [
+          { id: 'os3', service: 'S3 Storage' },
+          { id: 'sba', service: 'SpringBoot Application' }
+        ],
         description: 'Intelligent Orchestration Deployment Services'
       },
       position: { x: 50, y: 300 }
@@ -348,7 +351,10 @@ module.exports = Object.freeze({
         handlePosition1: 'top',
         handlePosition2: 'left',
         label: 'Demeter',
-        services: ['Customers S3 Storage', 'Demeter DevOps'],
+        services: [
+          { id: 'cs3', service: 'Customers S3 Storage' },
+          { id: 'ddo', service: 'Demeter DevOps' }
+        ],
         description: 'Intelligent Orchestration Environment  Services'
       },
       position: { x: 25, y: 50 }
