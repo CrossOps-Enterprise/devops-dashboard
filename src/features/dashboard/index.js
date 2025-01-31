@@ -221,7 +221,7 @@ function CustomGroup({ data, isConnectable }) {
     <>
       <div className='h-[600px] w-[800px]'>
         <div className='font-bold mb-1'>{label}</div>
-        <div className='h-[580px] w-[7500px] rounded-md shadow-md flex flex-col items-center p-2 border-dashed border-4 border-bro' />
+        <div className='h-[580px] w-[750px] rounded-md shadow-md flex flex-col items-center p-2 border-dashed border-4 border-bro' />
       </div>
     </>
   )
