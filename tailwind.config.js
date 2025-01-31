@@ -11,7 +11,11 @@ module.exports = {
     extend: {
       colors: {
         primary: colors.hd1,
-        secondary: colors.bro
+        secondary: colors.bro,
+        error: colors.red,
+        warning: colors.bro,
+        success: colors.gre,
+        ...colors
       }
     }
   },
