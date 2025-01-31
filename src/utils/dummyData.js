@@ -4,7 +4,8 @@ const {
   FaServer,
   FaArrowRight,
   FaGlobe,
-  FaNetworkWired
+  FaNetworkWired,
+  FaUsers
 } = require('react-icons/fa6')
 
 const customMarker = {
@@ -15,7 +16,7 @@ const customMarker = {
     color: '#FF0072'
   },
   style: {
-    strokeWidth: 2,
+    strokeWidth: 3,
     stroke: '#FF0072'
   }
 }
@@ -28,7 +29,7 @@ const greenMarker = {
     color: 'green'
   },
   style: {
-    strokeWidth: 2,
+    strokeWidth: 3,
     stroke: 'green'
   }
 }
@@ -283,7 +284,7 @@ module.exports = Object.freeze({
         label: 'One Diversified Production',
         icon: FaGlobe,
         className:
-          'h-[600px] min-w-[800px] rounded-md shadow-md flex flex-col items-start p-2 border border-primary border-dashed border-4'
+          'h-[600px] min-w-[800px] border border-primary border-dashed border-4'
       },
       position: { x: 50, y: 500 },
       type: 'customArea',
@@ -329,9 +330,12 @@ module.exports = Object.freeze({
       id: 'ce',
       extent: 'parent',
       // parentId: 'jioa',
-      type: 'customGroup',
+      type: 'customArea',
       draggable: false,
       data: {
+        icon: FaUsers,
+        className:
+          'h-[600px] min-w-[800px] border border-secondary border-dashed border-4',
         label: 'Customer Environment',
         handlePosition1: 'bottom',
         handlePosition2: 'bottom'
@@ -357,7 +361,7 @@ module.exports = Object.freeze({
         ],
         description: 'Intelligent Orchestration Environment  Services'
       },
-      position: { x: 25, y: 50 }
+      position: { x: 25, y: 100 }
     },
     {
       id: 'demeterAPI',
@@ -388,7 +392,7 @@ module.exports = Object.freeze({
         label: 'KrakenD API',
         description: 'Demeter calls home for all updates, no direct connection'
       },
-      position: { x: 960, y: 300 }
+      position: { x: 960, y: 350 }
     }
   ],
 

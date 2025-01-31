@@ -44,9 +44,10 @@ function CustomAreaNode({ data, isConnectable }) {
   const { label, icon: Icon, description, className } = data
   return (
     <>
-      <div className={`${className}`}>
+      <div
+        className={`${className} rounded-md shadow-md flex flex-col items-start p-2 `}>
         <div className='flex items-center justify-center mb-2 ml-2'>
-          <Icon className='w-8 h-8' />{' '}
+          {Icon && <Icon className='w-8 h-8' />}{' '}
           <span className='font-bold ml-2 text-xl text-tx1'>{label}</span>
         </div>
         <div className='text-sm text-gray-500'>{description}</div>
