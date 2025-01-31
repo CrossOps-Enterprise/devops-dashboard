@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import Charts from '../../features/charts'
+import Analytics from '../../features/analytics'
 import { setPageTitle } from '../../features/common/headerSlice'
 
 function InternalPage() {
@@ -10,7 +10,7 @@ function InternalPage() {
     dispatch(setPageTitle({ title: 'Analytics' }))
   }, [])
 
-  return <Charts />
+  return <Analytics />
 }
 
 export default InternalPage

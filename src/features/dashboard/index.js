@@ -81,7 +81,7 @@ function CustomNode({ data, isConnectable }) {
   } = data
   const { height, width, bg } = style
   const onNodeClick = (id) => {
-    navigate(`/app/stats/id=${id}`)
+    navigate(`/app/analytics/id=${id}`)
   }
   return (
     <>

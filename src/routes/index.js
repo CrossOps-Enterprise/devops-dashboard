@@ -7,7 +7,7 @@ const Applications = lazy(() => import('../pages/protected/Applications'))
 const Welcome = lazy(() => import('../pages/protected/Welcome'))
 const Page404 = lazy(() => import('../pages/protected/404'))
 const Blank = lazy(() => import('../pages/protected/Blank'))
-const Stats = lazy(() => import('../pages/protected/Stats'))
+const Analytics = lazy(() => import('../pages/protected/Analytics'))
 const Leads = lazy(() => import('../pages/protected/Leads'))
 const Integration = lazy(() => import('../pages/protected/Integration'))
 const Calendar = lazy(() => import('../pages/protected/Calendar'))
@@ -33,8 +33,8 @@ const routes = [
     component: Dashboard
   },
   {
-    path: '/stats/*',
-    component: Stats
+    path: '/analytics/*',
+    component: Analytics
   },
   {
     path: '/welcome', // the url

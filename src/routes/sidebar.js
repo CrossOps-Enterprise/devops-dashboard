@@ -51,12 +51,12 @@ const routes = [
         name: 'Production One' // name that appear in Sidebar
       }
     ]
-  },
-  {
-    path: '/app/stats', // url
-    icon: <ChartBarIcon className={iconClasses} />, // icon component
-    name: 'Analytics' // name that appear in Sidebar
   }
+  // {
+  //   path: '/app/stats', // url
+  //   icon: <ChartBarIcon className={iconClasses} />, // icon component
+  //   name: 'Analytics' // name that appear in Sidebar
+  // }
   // {
   //   path: '', //no url needed as this has submenu
   //   icon: <Cog6ToothIcon className={`${iconClasses} inline`} />, // icon component
