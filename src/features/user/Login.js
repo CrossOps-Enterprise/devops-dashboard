@@ -27,7 +27,7 @@ function Login() {
       // Call API to check user credentials and save token in localstorage
       localStorage.setItem('token', 'DumyTokenHere')
       setLoading(false)
-      window.location.href = '/app/applications'
+      window.location.href = '/app/productions/production1'
     }
   }
 

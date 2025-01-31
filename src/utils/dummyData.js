@@ -279,26 +279,32 @@ module.exports = Object.freeze({
   INITIAL_NODES: [
     {
       id: 'jioa',
-      data: { label: 'One Diversified Production', icon: FaGlobe },
-      position: { x: 50, y: 20 },
+      data: {
+        label: 'One Diversified Production',
+        icon: FaGlobe,
+        className:
+          'h-[600px] min-w-[800px] rounded-md shadow-md flex flex-col items-start p-2 border border-primary border-dashed border-4'
+      },
+      position: { x: 50, y: 500 },
       type: 'customArea',
       draggable: false
     },
     {
       id: 'kraken',
-      extent: 'parent',
-      parentId: 'jioa',
+      // extent: 'parent',
+      // parentId: 'jioa',
       type: 'custom',
       draggable: false,
       data: {
+        className: 'w-[600px] h-[200px]',
         status: 'active',
         icon: FaArrowRight,
         label: 'KrakenD',
         description: 'API gateway to every service',
-        handlePosition1: 'right',
-        handlePosition2: 'right'
+        handlePosition1: 'bottom',
+        handlePosition2: 'bottom'
       },
-      position: { x: 1250, y: 50 }
+      position: { x: 750, y: 50 }
     },
     {
       id: 'jiods',
@@ -307,6 +313,7 @@ module.exports = Object.freeze({
       type: 'custom',
       draggable: false,
       data: {
+        className: 'w-[200px] h-[250px]',
         status: 'active',
         icon: FaGlobe,
         label: 'Jupiter',
@@ -318,13 +325,15 @@ module.exports = Object.freeze({
     {
       id: 'ce',
       extent: 'parent',
-      parentId: 'jioa',
+      // parentId: 'jioa',
       type: 'customGroup',
       draggable: false,
       data: {
-        label: 'Customer Environment'
+        label: 'Customer Environment',
+        handlePosition1: 'bottom',
+        handlePosition2: 'bottom'
       },
-      position: { x: 700, y: 280 }
+      position: { x: 1200, y: 500 }
     },
     {
       id: 'dioes',
@@ -333,19 +342,16 @@ module.exports = Object.freeze({
       type: 'custom',
       draggable: false,
       data: {
-        style: {
-          // height: 200,
-          width: 280
-        },
+        className: 'w-[200px] h-250px]',
         status: 'active',
         icon: FaNetworkWired,
-        handlePosition1: 'left',
-        handlePosition2: 'right',
+        handlePosition1: 'top',
+        handlePosition2: 'left',
         label: 'Demeter',
         services: ['Customers S3 Storage', 'Demeter DevOps'],
-        description: 'Intelligent Orchestration via installable agents'
+        description: 'Intelligent Orchestration Environment  Services'
       },
-      position: { x: 40, y: 50 }
+      position: { x: 25, y: 50 }
     },
     {
       id: 'demeterAPI',
@@ -360,12 +366,12 @@ module.exports = Object.freeze({
         handlePosition2: 'right',
         label: 'Demeter API'
       },
-      position: { x: 450, y: 300 }
+      position: { x: 600, y: 300 }
     },
     {
       id: 'krakenApi',
       extent: 'parent',
-      parentId: 'jioa',
+      // parentId: 'jioa',
       type: 'connectingNode',
       draggable: false,
       data: {
@@ -376,7 +382,7 @@ module.exports = Object.freeze({
         label: 'KrakenD API',
         description: 'Demeter calls home for all updates, no direct connection'
       },
-      position: { x: 1000, y: 200 }
+      position: { x: 960, y: 300 }
     }
   ],
 

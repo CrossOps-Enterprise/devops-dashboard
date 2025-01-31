@@ -41,13 +41,13 @@ const statsData = [
 ]
 
 function CustomAreaNode({ data, isConnectable }) {
-  const { label, icon: Icon, description } = data
+  const { label, icon: Icon, description, className } = data
   return (
     <>
-      <div className='h-[1200px] min-w-[1800px] bg-gray-100 rounded-md shadow-md flex flex-col items-start p-2'>
-        <div className='flex items-center justify-center mb-2'>
-          <Icon />{' '}
-          <span className='font-bold ml-1 text-lg text-tx1'>{label}</span>
+      <div className={`${className}`}>
+        <div className='flex items-center justify-center mb-2 ml-2'>
+          <Icon className='w-8 h-8' />{' '}
+          <span className='font-bold ml-2 text-xl text-tx1'>{label}</span>
         </div>
         <div className='text-sm text-gray-500'>{description}</div>
       </div>
@@ -66,29 +66,37 @@ function VerticalAreaNode({}) {
 }
 
 function CustomNode({ data, isConnectable }) {
-  const { label, icon: Icon, description, status, services, style = {} } = data
-  const { height, width } = style
-
-  const heightAndWidthClasses = `h-[${height || '250'}px] w-[${width || '300'}px]`
-
+  const {
+    label,
+    icon: Icon,
+    description,
+    status,
+    services,
+    style = {},
+    className,
+    handlePosition1,
+    handlePosition2
+  } = data
+  const { height, width, bg } = style
+  // const heightAndWidthClasses = `h-[${height}px] w-[${width}px] bg-${bg || 'hl3a'`
   return (
     <>
       <Handle
         type='source'
-        position={Position.Right}
+        position={handlePosition1 || Position.Right}
         onConnect={(params) => console.log('handle onConnect', params)}
         isConnectable={isConnectable}
       />
 
       <Handle
         type='target'
-        position={Position.Left}
+        position={handlePosition2 || Position.Left}
         onConnect={(params) => console.log('handle onConnect', params)}
         isConnectable={isConnectable}
       />
 
       <div
-        className={`${heightAndWidthClasses} bg-hl3a rounded-md shadow-md flex flex-col pb-2`}>
+        className={`bg-hl3a rounded-md shadow-md flex flex-col pb-2 ${className}`}>
         <div className='p-2'>
           <div className='flex items-center justify-between w-full'>
             <div className='flex items-center w-4/5'>
@@ -205,9 +213,9 @@ function CustomGroup({ data, isConnectable }) {
 
   return (
     <>
-      <div className='h-[500px] w-[500px]'>
+      <div className='h-[600px] w-[800px]'>
         <div className='font-bold mb-1'>{label}</div>
-        <div className='h-[280px] w-[350px] rounded-md shadow-md flex flex-col items-center p-2 border-dashed border-4 border-bro' />
+        <div className='h-[580px] w-[7500px] rounded-md shadow-md flex flex-col items-center p-2 border-dashed border-4 border-bro' />
       </div>
     </>
   )
@@ -232,10 +240,10 @@ function Dashboard() {
   }, [])
 
   const onNodeClick = (event, node) => {
-    // if (!node.id.includes('ec')) {
-    //   return
-    // }
-    // navigate(`/app/stats/?id=${node.id}`)
+    if (!node.id.includes('ec')) {
+      return
+    }
+    navigate(`/app/stats/?id=${node.id}`)
   }
 
   return (
@@ -290,10 +298,11 @@ function Dashboard() {
             style={{
               backgroundColor: ''
             }}
+            maxZoom={0.5}
             edges={edges}
             nodeTypes={nodeTypes}
             onConnect={onConnect}
-            onNodeClick={onNodeClick}
+            // onNodeClick={onNodeClick}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}></ReactFlow>
         </div>
