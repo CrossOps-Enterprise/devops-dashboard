@@ -114,7 +114,7 @@ function Header() {
             <label
               tabIndex={0}
               className='btn btn-ghost btn-circle rounded-full flex items-center justify-center'>
-              <div className='rounded-full flex items-center justify-center border border-indigo-500 overflow-hidden'>
+              <div className='rounded-full flex items-center justify-center border border-primary overflow-hidden'>
                 <FaUser size={30} />
                 {/* <img src='https://placeimg.com/80/80/people' alt='profile' /> */}
               </div>

@@ -284,7 +284,7 @@ function Dashboard() {
             )}
           </div>
         </div> */}
-        <div className='shadow-md rounded-lg lg:ml-4 lg:mt-0 flex-grow h-[75%] border-2 border-indigo-500'>
+        <div className='shadow-md rounded-lg lg:ml-4 lg:mt-0 flex-grow h-[75%] border-2 border-primary'>
           <ReactFlow
             nodes={nodes}
             style={{
