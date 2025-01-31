@@ -304,7 +304,6 @@ function Dashboard() {
             style={{
               backgroundColor: ''
             }}
-            maxZoom={0.5}
             edges={edges}
             nodeTypes={nodeTypes}
             onConnect={onConnect}
