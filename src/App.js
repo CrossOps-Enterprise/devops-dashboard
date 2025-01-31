@@ -41,15 +41,15 @@ function App() {
           {/* Place new routes over this */}
           <Route path='/app/*' element={<Layout />} />
 
-          {/* <Route
+          <Route
             path='*'
             element={
               <Navigate
-                to={token ? '/app/applications/production1' : '/login'}
+                to={token ? '/app/productions/production1' : '/login'}
                 replace
               />
             }
-          /> */}
+          />
         </Routes>
       </Router>
     </>
