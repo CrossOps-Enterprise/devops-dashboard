@@ -361,7 +361,7 @@ module.exports = Object.freeze({
         ],
         description: 'Intelligent Orchestration Environment  Services'
       },
-      position: { x: 25, y: 100 }
+      position: { x: 200, y: 100 }
     },
     {
       id: 'demeterAPI',

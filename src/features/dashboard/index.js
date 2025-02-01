@@ -50,6 +50,7 @@ function CustomAreaNode({ data, isConnectable }) {
           {Icon && <Icon className='w-8 h-8' />}{' '}
           <span className='font-bold ml-2 text-xl text-tx1'>{label}</span>
         </div>
+        <hr className='w-full border-t-2 border-gray-300' />
         <div className='text-sm text-gray-500'>{description}</div>
       </div>
     </>
