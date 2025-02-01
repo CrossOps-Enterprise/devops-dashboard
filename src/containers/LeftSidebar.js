@@ -23,7 +23,7 @@ function LeftSidebar() {
         </button>
 
         <li className='mb-2 font-semibold text-xl'>
-          <Link to={'/app/productions/production1'}>SysHaven</Link>{' '}
+          <Link to={'/app/productions/1'}>SysHaven</Link>{' '}
         </li>
         {menus.map((menu, k) => {
           const isActiveLink =

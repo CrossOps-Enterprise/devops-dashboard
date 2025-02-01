@@ -1,11 +1,4 @@
-function DashboardStats({
-  title,
-  icon,
-  value,
-  description,
-  colorIndex,
-  onClick
-}) {
+function StatsCard({ title, icon, value, description, colorIndex, onClick }) {
   const COLORS = ['primary', 'primary']
 
   const getDescStyle = () => {
@@ -34,4 +27,4 @@ function DashboardStats({
   )
 }
 
-export default DashboardStats
+export default StatsCard

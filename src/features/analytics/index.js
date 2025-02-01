@@ -3,13 +3,13 @@ import moment from 'moment'
 import { useLocation } from 'react-router-dom'
 import TitleCard from '../../components/Cards/TitleCard'
 import LineChart from './components/LineChart'
-import DashboardStats from '../dashboard/components/DashboardStats'
 import { INITIAL_NODES } from '../../utils/dummyData'
 
 import UsersIcon from '@heroicons/react/24/outline/UsersIcon'
 import CircleStackIcon from '@heroicons/react/24/outline/CircleStackIcon'
 import CreditCardIcon from '@heroicons/react/24/outline/CreditCardIcon'
 import { parseLabel } from '../../utils/helpers'
+import StatsCard from '../../components/StatsCard'
 
 const statsData = [
   {
@@ -140,7 +140,7 @@ function Charts() {
       <div className='grid lg:grid-cols-4 mt-2 md:grid-cols-2 grid-cols-1 gap-6'>
         {statsData.map((d, k) => {
           return (
-            <DashboardStats
+            <StatsCard
               onClick={() => handleCardClick(d)}
               key={k}
               {...d}
