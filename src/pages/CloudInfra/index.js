@@ -2,6 +2,7 @@ import { useCallback, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { ReactFlow, useEdgesState, addEdge, useNodesState } from '@xyflow/react'
 
+import capitalize from 'lodash/capitalize'
 import StatsCard from '../../components/StatsCard'
 import UsersIcon from '@heroicons/react/24/outline/UsersIcon'
 import CircleStackIcon from '@heroicons/react/24/outline/CircleStackIcon'
@@ -19,6 +20,7 @@ import {
 } from '../../components/react-flow-nodes'
 import { useDispatch } from 'react-redux'
 import { setPageTitle } from '../../features/common/headerSlice'
+import { getProductionNameFromUrl } from '../../utils'
 
 const statsData = [
   {
@@ -45,14 +47,13 @@ function CloudInfra() {
   const dispatch = useDispatch()
   const location = useLocation()
   useEffect(() => {
-    let productionNumber = location.pathname?.split('/')
-    const productionName =
-      productionNumber?.[productionNumber.length - 1] === '1' ? 'One' : 'Two'
+    const productionName = getProductionNameFromUrl(location.pathname)
 
-    dispatch(setPageTitle({ title: `Production ${productionName}` }))
+    dispatch(
+      setPageTitle({ title: `Production ${capitalize(productionName)}` })
+    )
   }, [dispatch, location])
 
-  const navigate = useNavigate()
   const [nodes, setNodes, onNodesChange] = useNodesState(INITIAL_NODES)
   const [edges, setEdges, onEdgesChange] = useEdgesState(INITIAL_EDGES)
 
@@ -67,13 +68,6 @@ function CloudInfra() {
     customGroup: CustomGroup,
     subNode: SubNode,
     connectingNode: ConnectingNode
-  }
-
-  const onNodeClick = (event, node) => {
-    if (!node.id.includes('ec')) {
-      return
-    }
-    navigate(`/app/stats/?id=${node.id}`)
   }
 
   return (

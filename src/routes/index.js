@@ -1,6 +1,7 @@
 // All components mapping with path for internal routes
 
 import { lazy } from 'react'
+import ResourceDetail from '../pages/ResourceDetail'
 
 const CloudInfra = lazy(() => import('../pages/CloudInfra'))
 const Applications = lazy(() => import('../pages/protected/Applications'))
@@ -29,8 +30,8 @@ const routes = [
     component: CloudInfra
   },
   {
-    path: '/analytics/*',
-    component: Analytics
+    path: '/productions/:name/resource/:name',
+    component: ResourceDetail
   },
   {
     path: '/welcome', // the url

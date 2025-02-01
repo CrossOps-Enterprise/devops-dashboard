@@ -6,6 +6,8 @@ function SidebarSubmenu({ submenu, name, icon }) {
   const location = useLocation()
   const [isExpanded, setIsExpanded] = useState(false)
 
+  console.log(location)
+
   /** Open Submenu list if path found in routes, this is for directly loading submenu routes  first time */
   useEffect(() => {
     if (
@@ -33,11 +35,14 @@ function SidebarSubmenu({ submenu, name, icon }) {
       <div className={` w-full ` + (isExpanded ? '' : 'hidden')}>
         <ul className={`menu menu-compact`}>
           {submenu.map((m, k) => {
+            const renderActiveBadge =
+              location.pathname === m.path || location.pathname.includes(m.path)
+
             return (
               <li key={k}>
                 <Link to={m.path}>
                   {m.icon} {m.name}
-                  {location.pathname == m.path ? (
+                  {renderActiveBadge ? (
                     <span
                       className='absolute mt-1 mb-1 inset-y-0 left-0 w-1 rounded-tr-md rounded-br-md bg-primary '
                       aria-hidden='true'></span>

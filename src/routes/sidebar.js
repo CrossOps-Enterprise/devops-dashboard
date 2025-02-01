@@ -46,7 +46,7 @@ export const menus = [
     name: 'Productions', // name that appear in Sidebar
     submenu: [
       {
-        path: '/app/productions/1', // url
+        path: '/app/productions/one', // url
         icon: <BoltIcon className={iconClasses} />, // icon component
         name: 'Production One' // name that appear in Sidebar
       }

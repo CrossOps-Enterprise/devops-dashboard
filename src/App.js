@@ -44,7 +44,10 @@ function App() {
           <Route
             path='*'
             element={
-              <Navigate to={token ? '/app/productions/1' : '/login'} replace />
+              <Navigate
+                to={token ? '/app/productions/One' : '/login'}
+                replace
+              />
             }
           />
         </Routes>

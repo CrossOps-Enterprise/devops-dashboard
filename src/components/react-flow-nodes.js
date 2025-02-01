@@ -1,6 +1,7 @@
 import { Handle, Position } from '@xyflow/react'
 import { FaServer } from 'react-icons/fa6'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { getProductionNameFromUrl } from '../utils'
 
 export function CustomAreaNode({ data, isConnectable }) {
   const { label, icon: Icon, description, className } = data
@@ -31,6 +32,7 @@ export function VerticalAreaNode({}) {
 
 export function CustomNode({ data, isConnectable }) {
   const navigate = useNavigate()
+  const location = useLocation()
 
   const {
     label,
@@ -44,9 +46,11 @@ export function CustomNode({ data, isConnectable }) {
     handlePosition2
   } = data
   const { height, width, bg } = style
+
   const onNodeClick = (id) => {
-    navigate(`/app/analytics/id=${id}`)
+    navigate(`${location.pathname}/resource/${id}`)
   }
+
   return (
     <>
       <Handle
