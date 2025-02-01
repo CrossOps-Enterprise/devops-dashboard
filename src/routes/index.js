@@ -1,9 +1,8 @@
 // All components mapping with path for internal routes
 
 import { lazy } from 'react'
-import CloudInfra from '../pages/protected/CloudInfra'
 
-const Productions = lazy(() => import('../pages/protected/Productions'))
+const CloudInfra = lazy(() => import('../pages/CloudInfra'))
 const Applications = lazy(() => import('../pages/protected/Applications'))
 const Welcome = lazy(() => import('../pages/protected/Welcome'))
 const Page404 = lazy(() => import('../pages/protected/404'))

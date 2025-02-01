@@ -2,7 +2,7 @@ import { useCallback, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { ReactFlow, useEdgesState, addEdge, useNodesState } from '@xyflow/react'
 
-import StatsCard from '../../../components/StatsCard'
+import StatsCard from '../../components/StatsCard'
 import UsersIcon from '@heroicons/react/24/outline/UsersIcon'
 import CircleStackIcon from '@heroicons/react/24/outline/CircleStackIcon'
 import CreditCardIcon from '@heroicons/react/24/outline/CreditCardIcon'
@@ -16,9 +16,9 @@ import {
   SubNode,
   ConnectingNode,
   VerticalAreaNode
-} from './react-flow-nodes'
+} from '../../components/react-flow-nodes'
 import { useDispatch } from 'react-redux'
-import { setPageTitle } from '../../../features/common/headerSlice'
+import { setPageTitle } from '../../features/common/headerSlice'
 
 const statsData = [
   {
