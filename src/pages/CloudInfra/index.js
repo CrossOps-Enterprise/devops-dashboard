@@ -125,6 +125,7 @@ function CloudInfra() {
             edges={edges}
             nodeTypes={nodeTypes}
             onConnect={onConnect}
+            fitView
             // onNodeClick={onNodeClick}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}></ReactFlow>
