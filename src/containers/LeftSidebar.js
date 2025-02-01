@@ -1,4 +1,5 @@
-import routes from '../routes/sidebar'
+// import routes from '../routes/sidebar'
+import { menus } from '../routes/sidebar'
 import { NavLink, Routes, Link, useLocation } from 'react-router-dom'
 import SidebarSubmenu from './SidebarSubmenu'
 import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon'
@@ -24,18 +25,18 @@ function LeftSidebar() {
         <li className='mb-2 font-semibold text-xl'>
           <Link to={'/app/productions/production1'}>SysHaven</Link>{' '}
         </li>
-        {routes.map((route, k) => {
+        {menus.map((menu, k) => {
           const isActiveLink =
-            location.pathname === route.path ||
-            location.pathname.includes(route.path)
+            location.pathname === menu.path ||
+            location.pathname.includes(menu.path)
           return (
             <li className='' key={k}>
-              {route.submenu ? (
-                <SidebarSubmenu {...route} />
+              {menu.submenu ? (
+                <SidebarSubmenu {...menu} />
               ) : (
                 <NavLink
                   end
-                  to={route.path}
+                  to={menu.path}
                   className={() =>
                     `${
                       isActiveLink
@@ -43,7 +44,7 @@ function LeftSidebar() {
                         : 'font-normal'
                     }`
                   }>
-                  {route.icon} {route.name}
+                  {menu.icon} {menu.name}
                   {isActiveLink ? (
                     <span
                       className='absolute inset-y-0 left-0 w-1 rounded-tr-md rounded-br-md bg-primary '

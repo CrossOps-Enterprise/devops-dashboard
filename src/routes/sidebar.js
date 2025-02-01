@@ -1,6 +1,7 @@
 /** Icons are imported separatly to reduce build time */
 import ComputerDesktopIcon from '@heroicons/react/24/outline/ComputerDesktopIcon'
 import BoltIcon from '@heroicons/react/24/outline/BoltIcon'
+import ChartBarIcon from '@heroicons/react/24/outline/ChartBarIcon'
 // import Squares2X2Icon from '@heroicons/react/24/outline/Squares2X2Icon'
 // import DocumentTextIcon from '@heroicons/react/24/outline/DocumentTextIcon'
 // import TableCellsIcon from '@heroicons/react/24/outline/TableCellsIcon'
@@ -12,7 +13,6 @@ import BoltIcon from '@heroicons/react/24/outline/BoltIcon'
 // import ArrowRightOnRectangleIcon from '@heroicons/react/24/outline/ArrowRightOnRectangleIcon'
 // import UserIcon from '@heroicons/react/24/outline/UserIcon'
 // import Cog6ToothIcon from '@heroicons/react/24/outline/Cog6ToothIcon'
-import ChartBarIcon from '@heroicons/react/24/outline/ChartBarIcon'
 // import CurrencyDollarIcon from '@heroicons/react/24/outline/CurrencyDollarIcon'
 // import InboxArrowDownIcon from '@heroicons/react/24/outline/InboxArrowDownIcon'
 // import UsersIcon from '@heroicons/react/24/outline/UsersIcon'
@@ -22,7 +22,7 @@ import ChartBarIcon from '@heroicons/react/24/outline/ChartBarIcon'
 const iconClasses = `h-6 w-6`
 const submenuIconClasses = `h-5 w-5`
 
-const routes = [
+export const menus = [
   // {
   //   path: '/app/leads', // url
   //   icon: <InboxArrowDownIcon className={iconClasses} />, // icon component
@@ -103,4 +103,4 @@ const routes = [
   // }
 ]
 
-export default routes
+// export default routes
