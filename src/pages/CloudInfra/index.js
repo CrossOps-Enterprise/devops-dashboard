@@ -78,44 +78,6 @@ function CloudInfra() {
         })}
       </div>
       <div className='flex flex-col lg:flex-row mt-4 h-[100%]'>
-        {/* <div className='bg-white shadow-md rounded-lg p-2 lg:w-1/4 h-[75%]'>
-          <div className='text-center font-bold mb-4'>{cloud}</div>
-          <div className='space-y-4'>
-            {INITIAL_NODES?.map(
-              (node) =>
-                !node.parentId && (
-                  <div key={node.id} className='border-b-2 border-l-2 p-1'>
-                    <div className='font-bold'>{node.data.label}</div>
-                    <div className='ml-2'>
-                      {INITIAL_NODES.filter(
-                        (child) => child.parentId === node.id
-                      ).map((child) => (
-                        <div
-                          key={child.id}
-                          className='border-b-2 border-l-2 p-1 mt-1 mb-1'>
-                          <div className='font-bold'>
-                            {child.data.label.split('\n')[0]}
-                          </div>
-                          <div className='ml-2'>
-                            {INITIAL_NODES.filter(
-                              (grandChild) => grandChild.parentId === child.id
-                            ).map((grandChild) => (
-                              <div
-                                onClick={(e) => onNodeClick(e, grandChild)}
-                                key={grandChild.id}
-                                className='border-b-2 border-l-2 p-1 mt-1 mb-1 cursor-pointer'>
-                                {grandChild.data.label.split('\n')[0]}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )
-            )}
-          </div>
-        </div> */}
         <div className='shadow-md rounded-lg lg:ml-4 lg:mt-0 flex-grow h-[75%] border-2 border-primary'>
           <ReactFlow
             nodes={nodes}
