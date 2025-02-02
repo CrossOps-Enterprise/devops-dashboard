@@ -2,6 +2,7 @@
 
 import { lazy } from 'react'
 import ResourceDetail from '../pages/ResourceDetail'
+import S3Resource from '../pages/ResourceDetail/S3Resource'
 
 const CloudInfra = lazy(() => import('../pages/CloudInfra'))
 const Applications = lazy(() => import('../pages/protected/Applications'))
