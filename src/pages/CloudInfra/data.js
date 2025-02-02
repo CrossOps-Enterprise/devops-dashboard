@@ -32,6 +32,18 @@ const greenMarker = {
   }
 }
 
+const bothSideGreenMarker = {
+  markerStart: {
+    ...greenMarker.markerEnd
+  },
+  markerEnd: {
+    ...greenMarker.markerEnd
+  },
+  style: {
+    ...greenMarker.style
+  }
+}
+
 export const INITIAL_NODES = [
   {
     id: 'jioa',
@@ -49,7 +61,7 @@ export const INITIAL_NODES = [
     id: 'kraken',
     // extent: 'parent',
     // parentId: 'jioa',
-    type: 'custom',
+    type: 'krakenD',
     draggable: false,
     data: {
       className: 'w-[600px] h-[200px]',
@@ -186,6 +198,7 @@ export const INITIAL_EDGES = [
     animated: true,
     label: '',
     type: 'smoothstep',
-    ...greenMarker
+    ...bothSideGreenMarker
+    // ...greenMarker
   }
 ]

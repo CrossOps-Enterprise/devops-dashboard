@@ -18,3 +18,12 @@ export const colors = {
   gre: '#0f0', // Green
   bro: '#f60' // Orange
 }
+
+export const theme = {
+  primary: colors.hd1,
+  secondary: colors.bro,
+  error: colors.red,
+  warning: colors.bro,
+  success: colors.gre,
+  ...colors
+}

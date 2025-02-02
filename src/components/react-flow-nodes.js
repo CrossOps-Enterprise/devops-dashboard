@@ -2,6 +2,7 @@ import { Handle, Position } from '@xyflow/react'
 import { FaServer } from 'react-icons/fa6'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { getProductionNameFromUrl } from '../utils'
+import { colors, theme } from '../constants'
 
 export function CustomAreaNode({ data, isConnectable }) {
   const { label, icon: Icon, description, className } = data
@@ -27,6 +28,121 @@ export function VerticalAreaNode({}) {
         <FaServer /> &nbsp;Instances
       </div>
     </div>
+  )
+}
+
+export function KrakenDNode({ data, isConnectable }) {
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  const {
+    label,
+    icon: Icon,
+    description,
+    status,
+    services,
+    style = {},
+    className,
+    handlePosition1,
+    handlePosition2
+  } = data
+  const { height, width, bg } = style
+
+  const onNodeClick = (id) => {
+    navigate(`${location.pathname}/resource/${id}`)
+  }
+
+  return (
+    <>
+      <Handle
+        type='source'
+        id='r1'
+        position={Position.Right}
+        style={{
+          top: '20%',
+          backgroundColor: theme.primary,
+          height: 10,
+          width: 10
+        }}
+        onConnect={(params) => console.log('handle onConnect', params)}
+        isConnectable={isConnectable}
+      />
+
+      <Handle
+        type='source'
+        position={Position.Right}
+        style={{
+          backgroundColor: 'green',
+          height: 10,
+          width: 10
+        }}
+        onConnect={(params) => console.log('handle onConnect', params)}
+        isConnectable={isConnectable}
+      />
+
+      <Handle
+        type='source'
+        id='r2'
+        position={Position.Right}
+        style={{
+          top: '80%',
+          backgroundColor: theme.secondary,
+          height: 10,
+          width: 10
+        }}
+        onConnect={(params) => console.log('handle onConnect', params)}
+        isConnectable={isConnectable}
+      />
+
+      <Handle
+        type='target'
+        id='api-target'
+        position={Position.Bottom}
+        onConnect={(params) => console.log('handle onConnect', params)}
+        isConnectable={isConnectable}
+      />
+      {/* <Handle
+        type='target'
+        id='t2'
+        position={Position.Bottom}
+        onConnect={(params) => console.log('handle onConnect', params)}
+        isConnectable={isConnectable}
+      /> */}
+
+      <div
+        className={`bg-hl3a rounded-md shadow-md flex flex-col pb-2 ${className}`}>
+        <div className='p-2'>
+          <div className='flex items-center justify-between w-full'>
+            <div className='flex items-center w-4/5'>
+              <Icon />
+              <span className='ml-1 font-bold'>{label}</span>
+            </div>
+            <div
+              className={`w-3 h-3 rounded-full ${
+                status?.toLowerCase() === 'active'
+                  ? 'bg-green-500'
+                  : 'bg-red-500'
+              }`}></div>
+          </div>
+          <div className='text-gray-500 w-full'>{description}</div>
+        </div>
+        {Boolean(services?.length) && (
+          <div className='border-t border-black my-2'></div>
+        )}
+
+        {services?.map((item) => (
+          <>
+            <div
+              onClick={() => onNodeClick(item?.id)}
+              className='flex items-center w-full justify-center flex-col'>
+              <div className='w-[90%] border-2 border-dashed border-gray-400 p-2 mt-2'>
+                <div className='font-bold'>{item?.service}</div>
+              </div>
+            </div>
+          </>
+        ))}
+      </div>
+    </>
   )
 }
 

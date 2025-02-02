@@ -16,7 +16,8 @@ import {
   CustomNode,
   SubNode,
   ConnectingNode,
-  VerticalAreaNode
+  VerticalAreaNode,
+  KrakenDNode
 } from '../../components/react-flow-nodes'
 import { useDispatch } from 'react-redux'
 import { setPageTitle } from '../../features/common/headerSlice'
@@ -63,6 +64,7 @@ function CloudInfra() {
 
   const nodeTypes = {
     custom: CustomNode,
+    krakenD: KrakenDNode,
     verticalArea: VerticalAreaNode,
     customArea: CustomAreaNode,
     customGroup: CustomGroup,
