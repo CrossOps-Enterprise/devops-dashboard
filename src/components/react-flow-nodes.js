@@ -1,8 +1,7 @@
 import { Handle, Position } from '@xyflow/react'
 import { FaServer } from 'react-icons/fa6'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { getProductionNameFromUrl } from '../utils'
-import { colors, theme } from '../constants'
+import { theme } from '../constants'
 
 export function CustomAreaNode({ data, isConnectable }) {
   const { label, icon: Icon, description, className } = data
@@ -21,7 +20,7 @@ export function CustomAreaNode({ data, isConnectable }) {
   )
 }
 
-export function VerticalAreaNode({}) {
+export function VerticalAreaNode() {
   return (
     <div className='flex flex-col p-2 bg-hl3a-300 rounded-md shadow-md h-[400px] w-[200px]'>
       <div className='font-bold flex items-center'>
@@ -35,18 +34,7 @@ export function KrakenDNode({ data, isConnectable }) {
   const navigate = useNavigate()
   const location = useLocation()
 
-  const {
-    label,
-    icon: Icon,
-    description,
-    status,
-    services,
-    style = {},
-    className,
-    handlePosition1,
-    handlePosition2
-  } = data
-  const { height, width, bg } = style
+  const { label, icon: Icon, description, status, services, className } = data
 
   const onNodeClick = (id) => {
     navigate(`${location.pathname}/resource/${id}`)
@@ -156,12 +144,10 @@ export function CustomNode({ data, isConnectable }) {
     description,
     status,
     services,
-    style = {},
     className,
     handlePosition1,
     handlePosition2
   } = data
-  const { height, width, bg } = style
 
   const onNodeClick = (id) => {
     navigate(`${location.pathname}/resource/${id}`)
@@ -221,15 +207,7 @@ export function CustomNode({ data, isConnectable }) {
 }
 
 export function SubNode({ data, isConnectable }) {
-  const {
-    label,
-    icon: Icon,
-    description,
-    status,
-    style,
-    handlePosition1,
-    handlePosition2
-  } = data
+  const { label, description, status, handlePosition1, handlePosition2 } = data
 
   return (
     <>
@@ -263,14 +241,7 @@ export function SubNode({ data, isConnectable }) {
 }
 
 export function ConnectingNode({ data, isConnectable }) {
-  const {
-    label,
-    icon: Icon,
-    description,
-    status,
-    handlePosition1,
-    handlePosition2
-  } = data
+  const { label, description, handlePosition1, handlePosition2 } = data
 
   return (
     <>
@@ -299,7 +270,7 @@ export function ConnectingNode({ data, isConnectable }) {
 }
 
 export function CustomGroup({ data, isConnectable }) {
-  const { label, description, status } = data
+  const { label } = data
 
   return (
     <>

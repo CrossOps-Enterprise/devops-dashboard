@@ -112,7 +112,6 @@ function Charts() {
   }, [id])
 
   const handleCardClick = (d) => {
-    console.log(d)
     setCurrentStat(d)
   }
 

@@ -1,31 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import {
-  BarChart,
-  Bar,
   XAxis,
   YAxis,
   Tooltip,
   ResponsiveContainer,
   AreaChart,
-  Area,
-  LineChart,
-  Line
+  Area
 } from 'recharts'
-import {
-  Cpu,
-  Database,
-  ArrowDown,
-  ArrowUp,
-  Server,
-  Shield,
-  Clock,
-  HardDrive
-} from 'lucide-react'
-import { INITIAL_NODES } from '../CloudInfra/data'
-import { parseLabel } from '../../utils'
-import { useLocation, useParams } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { setPageTitle } from '../../features/common/headerSlice'
+import { Cpu, Database, ArrowDown, Server, HardDrive } from 'lucide-react'
 import { colors } from '../../constants'
 import ResourceInfoCard from '../../components/ResourceInfoCard'
 import ResourceCard from '../../components/ResourceCard'

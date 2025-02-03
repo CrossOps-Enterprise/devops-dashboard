@@ -2,9 +2,7 @@
 
 import { lazy } from 'react'
 import ResourceDetail from '../pages/ResourceDetail'
-import SpringBootResource from '../pages/ResourceDetail/SpringbootResource'
 
-const S3Resource = lazy(() => import('../pages/ResourceDetail/S3Resource'))
 const CloudInfra = lazy(() => import('../pages/CloudInfra'))
 const Applications = lazy(() => import('../pages/protected/Applications'))
 const Welcome = lazy(() => import('../pages/protected/Welcome'))

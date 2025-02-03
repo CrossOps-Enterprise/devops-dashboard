@@ -1,32 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-  AreaChart,
-  Area,
-  LineChart,
-  Line
-} from 'recharts'
-import {
-  Cpu,
-  Database,
-  ArrowDown,
-  ArrowUp,
-  Server,
-  Shield,
-  Clock,
-  HardDrive
-} from 'lucide-react'
-import { INITIAL_NODES } from '../CloudInfra/data'
-import { parseLabel } from '../../utils'
-import { useLocation, useParams } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setPageTitle } from '../../features/common/headerSlice'
-import { colors } from '../../constants'
 import SpringBootResource from './SpringbootResource'
 import S3Resource from './S3Resource'
 import Ec2Resource from './EC2Resource'
@@ -41,7 +16,6 @@ const performanceData = Array.from({ length: 20 }, (_, i) => ({
 
 function ResourceDetail() {
   const params = useParams()
-  const [timeRange, setTimeRange] = useState('24h')
 
   const dispatch = useDispatch()
 
@@ -53,7 +27,7 @@ function ResourceDetail() {
     if (params.name === 'ddo') title += 'EC2 Instance'
 
     dispatch(setPageTitle({ title }))
-  }, [dispatch])
+  }, [dispatch, params])
 
   function getComponent() {
     if (params.name === 'sba') return <SpringBootResource />

@@ -1,7 +1,6 @@
 import React from 'react'
 import { Line, LineChart, ResponsiveContainer } from 'recharts'
 import { colors } from '../constants'
-import { Cpu } from 'lucide-react'
 
 function ResourceCard({
   performanceData,

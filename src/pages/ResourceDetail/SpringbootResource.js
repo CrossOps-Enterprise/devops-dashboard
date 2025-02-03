@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import {
-  BarChart,
-  Bar,
   XAxis,
   YAxis,
   Tooltip,
@@ -11,17 +9,7 @@ import {
   LineChart,
   Line
 } from 'recharts'
-import {
-  Cpu,
-  Database,
-  ArrowDown,
-  ArrowUp,
-  Activity,
-  Box,
-  Clock,
-  Gauge
-} from 'lucide-react'
-import ResourceCard from '../../components/ResourceCard'
+import { Cpu, Database, Activity, Box, Clock } from 'lucide-react'
 import ResourceInfoCard from '../../components/ResourceInfoCard'
 
 const performanceData = Array.from({ length: 24 }, (_, i) => ({
