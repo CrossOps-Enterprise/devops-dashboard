@@ -7,7 +7,7 @@ import {
   Server,
   BarChart2
 } from 'lucide-react'
-import TitleCard from '../../../components/Cards/TitleCard'
+import TitleCard from '../../components/Cards/TitleCard'
 import {
   BarChart,
   Bar,
