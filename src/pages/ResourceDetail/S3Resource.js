@@ -28,26 +28,10 @@ import { useDispatch } from 'react-redux'
 import { setPageTitle } from '../../features/common/headerSlice'
 import { colors } from '../../constants'
 import ResourceInfoCard from '../../components/ResourceInfoCard'
+import ResourceCard from '../../components/ResourceCard'
 
-const performanceData = Array.from({ length: 20 }, (_, i) => ({
-  time: `${i}:00`,
-  cpu: Math.floor(Math.random() * 40) + 20,
-  memory: Math.floor(Math.random() * 30) + 50,
-  network: Math.floor(Math.random() * 100),
-  diskIO: Math.floor(Math.random() * 60)
-}))
-
-function S3Resource() {
-  const params = useParams()
+function S3Resource({ performanceData }) {
   const [timeRange, setTimeRange] = useState('24h')
-
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(
-      setPageTitle({ title: `Resource: S3 Storage` || params.name || '' })
-    )
-  }, [dispatch, params])
 
   return (
     <div className='min-h-screen bg-gray-50 dark:bg-slate-800'>
@@ -163,127 +147,39 @@ function S3Resource() {
             </button>
           </div>
         </div>
-        {/* Metrics Grid */}
         <div className='grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6'>
-          <div className='bg-white dark:bg-slate-700 rounded-lg shadow-sm p-4 border border-gray-200 dark:border-slate-600'>
-            <div className='flex items-center justify-between mb-2'>
-              <span className='text-sm font-medium text-gray-500 dark:text-gray-400'>
-                CPU Utilization
-              </span>
-              <Cpu className='w-5 h-5 text-blue-500' />
-            </div>
-            <div className='flex items-baseline'>
-              <span className='text-2xl font-bold text-gray-900 dark:text-white'>
-                20%
-              </span>
-              <span className='ml-2 text-sm text-green-600 dark:text-green-300'>
-                ↓ 5%
-              </span>
-            </div>
-            <div className='mt-4 h-[50px]'>
-              <ResponsiveContainer width='100%' height='100%'>
-                <LineChart data={performanceData.slice(-10)}>
-                  <Line
-                    type='monotone'
-                    dataKey='cpu'
-                    stroke={colors.hd1}
-                    strokeWidth={2}
-                    dot={false}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-
-          <div className='bg-white dark:bg-slate-700 rounded-lg shadow-sm p-4 border border-gray-200 dark:border-slate-600'>
-            <div className='flex items-center justify-between mb-2'>
-              <span className='text-sm font-medium text-gray-500 dark:text-gray-400'>
-                Memory Usage
-              </span>
-              <Database className='w-5 h-5 text-blue-500' />
-            </div>
-            <div className='flex items-baseline'>
-              <span className='text-2xl font-bold text-gray-900 dark:text-white'>
-                78%
-              </span>
-              <span className='ml-2 text-sm text-yellow-600 dark:text-yellow-300'>
-                ↑ 12%
-              </span>
-            </div>
-            <div className='mt-4 h-[50px]'>
-              <ResponsiveContainer width='100%' height='100%'>
-                <LineChart data={performanceData.slice(-10)}>
-                  <Line
-                    type='monotone'
-                    dataKey='memory'
-                    stroke={colors.hd1}
-                    strokeWidth={2}
-                    dot={false}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-
-          <div className='bg-white dark:bg-slate-700 rounded-lg shadow-sm p-4 border border-gray-200 dark:border-slate-600'>
-            <div className='flex items-center justify-between mb-2'>
-              <span className='text-sm font-medium text-gray-500 dark:text-gray-400'>
-                Network I/O
-              </span>
-              <ArrowDown className='w-5 h-5 text-blue-500' />
-            </div>
-            <div className='flex items-baseline'>
-              <span className='text-2xl font-bold text-gray-900 dark:text-white'>
-                1.2 MB/s
-              </span>
-              <span className='ml-2 text-sm text-green-600 dark:text-green-300'>
-                ↓ 0.3 MB/s
-              </span>
-            </div>
-            <div className='mt-4 h-[50px]'>
-              <ResponsiveContainer width='100%' height='100%'>
-                <LineChart data={performanceData.slice(-10)}>
-                  <Line
-                    type='monotone'
-                    dataKey='network'
-                    stroke={colors.hd1}
-                    strokeWidth={2}
-                    dot={false}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-
-          <div className='bg-white dark:bg-slate-700 rounded-lg shadow-sm p-4 border border-gray-200 dark:border-slate-600'>
-            <div className='flex items-center justify-between mb-2'>
-              <span className='text-sm font-medium text-gray-500 dark:text-gray-400'>
-                Disk I/O
-              </span>
-              <HardDrive className='w-5 h-5 text-blue-500' />
-            </div>
-            <div className='flex items-baseline'>
-              <span className='text-2xl font-bold text-gray-900 dark:text-white'>
-                156 IOPS
-              </span>
-              <span className='ml-2 text-sm text-red-600 dark:text-red-300'>
-                ↑ 23 IOPS
-              </span>
-            </div>
-            <div className='mt-4 h-[50px]'>
-              <ResponsiveContainer width='100%' height='100%'>
-                <LineChart data={performanceData.slice(-10)}>
-                  <Line
-                    type='monotone'
-                    dataKey='diskIO'
-                    stroke={colors.hd1}
-                    strokeWidth={2}
-                    dot={false}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
+          <ResourceCard
+            icon={Cpu}
+            title='CPU Utilization'
+            stats='20%'
+            dataKey='cpu'
+            change='↓ 5%'
+            performanceData={performanceData}
+          />
+          <ResourceCard
+            icon={Database}
+            title='Memory Usage'
+            dataKey='memory'
+            stats='78%'
+            change='↑ 12%'
+            performanceData={performanceData}
+          />
+          <ResourceCard
+            icon={ArrowDown}
+            dataKey='network'
+            title='Network I/O'
+            stats='1.2 MB/s'
+            change='↓ 0.3 MB/s'
+            performanceData={performanceData}
+          />
+          <ResourceCard
+            icon={HardDrive}
+            title='Disk I/O'
+            dataKey='diskIO'
+            stats='156 IOPS'
+            change='↑ 23 IOPS'
+            performanceData={performanceData}
+          />
         </div>
         {/* Detailed Charts */}
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>

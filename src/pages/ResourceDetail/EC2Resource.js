@@ -28,25 +28,8 @@ import { useDispatch } from 'react-redux'
 import { setPageTitle } from '../../features/common/headerSlice'
 import { colors } from '../../constants'
 
-const performanceData = Array.from({ length: 20 }, (_, i) => ({
-  time: `${i}:00`,
-  cpu: Math.floor(Math.random() * 40) + 20,
-  memory: Math.floor(Math.random() * 30) + 50,
-  network: Math.floor(Math.random() * 100),
-  diskIO: Math.floor(Math.random() * 60)
-}))
-
-function EC2Resource() {
-  const params = useParams()
+function EC2Resource({ performanceData }) {
   const [timeRange, setTimeRange] = useState('24h')
-
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(
-      setPageTitle({ title: `Resource: S3 Storage` || params.name || '' })
-    )
-  }, [dispatch, params])
 
   return (
     <div className='min-h-screen bg-gray-50 dark:bg-slate-800'>
