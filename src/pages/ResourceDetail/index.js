@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setPageTitle } from '../../features/common/headerSlice'
 import SpringBootResource from './SpringbootResource'
@@ -16,6 +16,7 @@ const performanceData = Array.from({ length: 20 }, (_, i) => ({
 
 function ResourceDetail() {
   const params = useParams()
+  const navigate = useNavigate()
 
   const dispatch = useDispatch()
 
@@ -29,12 +30,34 @@ function ResourceDetail() {
     dispatch(setPageTitle({ title }))
   }, [dispatch, params])
 
+  const viewBilling = () => {
+    navigate(`/app/billing/${params.name}`)
+  }
+
   function getComponent() {
-    if (params.name === 'sba') return <SpringBootResource />
+    if (params.name === 'sba')
+      return <SpringBootResource viewBilling={viewBilling} />
     if (params.name === 'os3')
-      return <S3Resource performanceData={performanceData} />
+      return (
+        <S3Resource
+          performanceData={performanceData}
+          viewBilling={viewBilling}
+        />
+      )
+    if (params.name === 'cs3')
+      return (
+        <S3Resource
+          performanceData={performanceData}
+          viewBilling={viewBilling}
+        />
+      )
     if (params.name === 'ddo')
-      return <Ec2Resource performanceData={performanceData} />
+      return (
+        <Ec2Resource
+          performanceData={performanceData}
+          viewBilling={viewBilling}
+        />
+      )
   }
 
   return getComponent()

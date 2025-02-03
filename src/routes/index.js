@@ -13,7 +13,7 @@ const Integration = lazy(() => import('../pages/protected/Integration'))
 const Calendar = lazy(() => import('../pages/protected/Calendar'))
 const Team = lazy(() => import('../pages/protected/Team'))
 const Transactions = lazy(() => import('../pages/protected/Transactions'))
-const Bills = lazy(() => import('../pages/protected/Bills'))
+const Billing = lazy(() => import('../pages/protected/Billing'))
 const ProfileSettings = lazy(() => import('../pages/protected/ProfileSettings'))
 const GettingStarted = lazy(() => import('../pages/GettingStarted'))
 const DocFeatures = lazy(() => import('../pages/DocFeatures'))
@@ -31,6 +31,10 @@ const routes = [
   {
     path: '/productions/:name/resource/:name',
     component: ResourceDetail
+  },
+  {
+    path: '/billing/:resourceName',
+    component: Billing
   },
   {
     path: '/welcome', // the url
@@ -55,10 +59,6 @@ const routes = [
   {
     path: '/settings-profile',
     component: ProfileSettings
-  },
-  {
-    path: '/settings-billing',
-    component: Bills
   },
   {
     path: '/getting-started',

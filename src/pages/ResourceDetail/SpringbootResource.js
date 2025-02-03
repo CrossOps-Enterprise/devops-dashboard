@@ -20,7 +20,7 @@ const performanceData = Array.from({ length: 24 }, (_, i) => ({
   requestCount: Math.floor(Math.random() * 500) + 1000
 }))
 
-function SpringBootResource() {
+function SpringBootResource({ viewBilling }) {
   const [timeRange, setTimeRange] = useState('1h')
 
   return (
@@ -46,6 +46,11 @@ function SpringBootResource() {
           <div className='flex items-center gap-4'>
             <button className='px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50'>
               View Logs
+            </button>
+            <button
+              onClick={viewBilling}
+              className='px-4 py-2 text-sm font-medium  dark:text-gray-300 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 rounded-md hover:bg-blue-200 dark:hover:bg-slate-600 bg-blue-400 text-white'>
+              View Billings
             </button>
             <button className='px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-md hover:bg-green-700'>
               Restart App
