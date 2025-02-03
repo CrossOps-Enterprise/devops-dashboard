@@ -19,6 +19,8 @@ import {
   ResponsiveContainer
 } from 'recharts'
 import { useParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { setPageTitle } from '../../features/common/headerSlice'
 
 const placeholderData = [
   {
@@ -133,11 +135,16 @@ const billingLogs = [
 function Billing() {
   const { resourceName } = useParams()
   const [resourceData, setResourceData] = useState(null)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const resource = placeholderData.find((r) => r.id === resourceName)
     setResourceData(resource)
   }, [resourceName])
+
+  useEffect(() => {
+    dispatch(setPageTitle({ title: 'Billing' }))
+  }, [dispatch])
 
   const getPaymentStatusBadge = (status) => {
     const statusClasses = {
