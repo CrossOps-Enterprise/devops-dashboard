@@ -7,26 +7,12 @@ import {
   Tooltip,
   ResponsiveContainer,
   AreaChart,
-  Area,
-  LineChart,
-  Line
+  Area
 } from 'recharts'
-import {
-  Cpu,
-  Database,
-  ArrowDown,
-  ArrowUp,
-  Server,
-  Shield,
-  Clock,
-  HardDrive
-} from 'lucide-react'
-import { INITIAL_NODES } from '../CloudInfra/data'
-import { parseLabel } from '../../utils'
-import { useLocation, useParams } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { setPageTitle } from '../../features/common/headerSlice'
+import { Cpu, Database, ArrowDown, Server, HardDrive } from 'lucide-react'
 import { colors } from '../../constants'
+import ResourceInfoCard from '../../components/ResourceInfoCard'
+import ResourceCard from '../../components/ResourceCard'
 
 function EC2Resource({ performanceData }) {
   const [timeRange, setTimeRange] = useState('24h')
@@ -65,136 +51,37 @@ function EC2Resource({ performanceData }) {
       <div className='p-6'>
         {/* Instance Details */}
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6'>
-          <div className='bg-white dark:bg-slate-700 rounded-lg shadow-sm border border-gray-200 dark:border-slate-600 p-6'>
-            <h2 className='text-sm font-bold text-gray-500 dark:text-gray-400 mb-4'>
-              Instance Details
-            </h2>
-            <div className='space-y-3'>
-              <div className='flex justify-between'>
-                <span className='text-sm text-gray-500 dark:text-gray-400'>
-                  Instance ID
-                </span>
-                <span className='text-sm font-medium text-gray-900 dark:text-white'>
-                  i-0123456789abcdef0
-                </span>
-              </div>
-              <div className='flex justify-between'>
-                <span className='text-sm text-gray-500 dark:text-gray-400'>
-                  Instance Type
-                </span>
-                <span className='text-sm font-medium text-gray-900 dark:text-white'>
-                  t2.xlarge
-                </span>
-              </div>
-              <div className='flex justify-between'>
-                <span className='text-sm text-gray-500 dark:text-gray-400'>
-                  Availability Zone
-                </span>
-                <span className='text-sm font-medium text-gray-900 dark:text-white'>
-                  us-east-1a
-                </span>
-              </div>
-              <div className='flex justify-between'>
-                <span className='text-sm text-gray-500 dark:text-gray-400'>
-                  Platform
-                </span>
-                <span className='text-sm font-medium text-gray-900 dark:text-white'>
-                  Amazon Linux 2
-                </span>
-              </div>
-              <div className='flex justify-between'>
-                <span className='text-sm text-gray-500 dark:text-gray-400'>
-                  Private IP
-                </span>
-                <span className='text-sm font-medium text-gray-900 dark:text-white'>
-                  172.31.16.25
-                </span>
-              </div>
-            </div>
-          </div>
+          <ResourceInfoCard
+            title='Instance Details'
+            items={[
+              { label: 'Instance ID', value: 'i-0123456789abcdef0' },
+              { label: 'Instance Type', value: 't2.xlarge' },
+              { label: 'Availability Zone', value: 'us-east-1a' },
+              { label: 'Platform', value: 'Amazon Linux 2' },
+              { label: 'Private IP', value: '172.31.16.25' }
+            ]}
+          />
 
-          <div className='bg-white dark:bg-slate-700 rounded-lg shadow-sm border border-gray-200 dark:border-slate-600 p-6'>
-            <h2 className='text-sm font-bold text-gray-500 dark:text-gray-400 mb-4'>
-              Security
-            </h2>
-            <div className='space-y-3'>
-              <div className='flex justify-between'>
-                <span className='text-sm text-gray-500 dark:text-gray-400'>
-                  Security Group
-                </span>
-                <span className='text-sm font-medium text-gray-900 dark:text-white'>
-                  sg-web-production
-                </span>
-              </div>
-              <div className='flex justify-between'>
-                <span className='text-sm text-gray-500 dark:text-gray-400'>
-                  IAM Role
-                </span>
-                <span className='text-sm font-medium text-gray-900 dark:text-white'>
-                  EC2-Production-Role
-                </span>
-              </div>
-              <div className='flex justify-between'>
-                <span className='text-sm text-gray-500 dark:text-gray-400'>
-                  Key Pair
-                </span>
-                <span className='text-sm font-medium text-gray-900 dark:text-white'>
-                  prod-key-pair
-                </span>
-              </div>
-              <div className='flex justify-between'>
-                <span className='text-sm text-gray-500 dark:text-gray-400'>
-                  Monitoring
-                </span>
-                <span className='text-sm font-medium text-green-600 dark:text-green-300'>
-                  Enhanced
-                </span>
-              </div>
-            </div>
-          </div>
+          <ResourceInfoCard
+            title='Security'
+            items={[
+              { label: 'Security Group', value: 'sg-web-production' },
+              { label: 'IAM Role', value: 'EC2-Production-Role' },
+              { label: 'Key Pair', value: 'prod-key-pair' },
+              { label: 'Monitoring', value: 'Enhanced', active: true }
+            ]}
+          />
 
-          <div className='bg-white dark:bg-slate-700 rounded-lg shadow-sm border border-gray-200 dark:border-slate-600 p-6'>
-            <h2 className='text-sm font-bold text-gray-500 dark:text-gray-400 mb-4'>
-              Storage
-            </h2>
-            <div className='space-y-3'>
-              <div className='flex justify-between'>
-                <span className='text-sm text-gray-500 dark:text-gray-400'>
-                  Root Volume
-                </span>
-                <span className='text-sm font-medium text-gray-900 dark:text-white'>
-                  vol-0a1b2c3d4e
-                </span>
-              </div>
-              <div className='flex justify-between'>
-                <span className='text-sm text-gray-500 dark:text-gray-400'>
-                  Size
-                </span>
-                <span className='text-sm font-medium text-gray-900 dark:text-white'>
-                  100 GB
-                </span>
-              </div>
-              <div className='flex justify-between'>
-                <span className='text-sm text-gray-500 dark:text-gray-400'>
-                  Volume Type
-                </span>
-                <span className='text-sm font-medium text-gray-900 dark:text-white'>
-                  gp3
-                </span>
-              </div>
-              <div className='flex justify-between'>
-                <span className='text-sm text-gray-500 dark:text-gray-400'>
-                  IOPS
-                </span>
-                <span className='text-sm font-medium text-gray-900 dark:text-white'>
-                  3000
-                </span>
-              </div>
-            </div>
-          </div>
+          <ResourceInfoCard
+            title='Storage'
+            items={[
+              { label: 'Root Volume', value: 'vol-0a1b2c3d4e' },
+              { label: 'Size', value: '100 GB' },
+              { label: 'Volume Type', value: 'gp3' },
+              { label: 'IOPS', value: '3000' }
+            ]}
+          />
         </div>
-
-        {/* Metrics Controls */}
         <div className='flex items-center justify-between mb-6'>
           <h2 className='text-lg font-semibold text-gray-900 dark:text-white'>
             Performance Metrics
@@ -217,125 +104,38 @@ function EC2Resource({ performanceData }) {
 
         {/* Metrics Grid */}
         <div className='grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6'>
-          <div className='bg-white dark:bg-slate-700 rounded-lg shadow-sm p-4 border border-gray-200 dark:border-slate-600'>
-            <div className='flex items-center justify-between mb-2'>
-              <span className='text-sm font-medium text-gray-500 dark:text-gray-400'>
-                CPU Utilization
-              </span>
-              <Cpu className='w-5 h-5 text-blue-500' />
-            </div>
-            <div className='flex items-baseline'>
-              <span className='text-2xl font-bold text-gray-900 dark:text-white'>
-                20%
-              </span>
-              <span className='ml-2 text-sm text-green-600 dark:text-green-300'>
-                ↓ 5%
-              </span>
-            </div>
-            <div className='mt-4 h-[50px]'>
-              <ResponsiveContainer width='100%' height='100%'>
-                <LineChart data={performanceData.slice(-10)}>
-                  <Line
-                    type='monotone'
-                    dataKey='cpu'
-                    stroke={colors.hd1}
-                    strokeWidth={2}
-                    dot={false}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-
-          <div className='bg-white dark:bg-slate-700 rounded-lg shadow-sm p-4 border border-gray-200 dark:border-slate-600'>
-            <div className='flex items-center justify-between mb-2'>
-              <span className='text-sm font-medium text-gray-500 dark:text-gray-400'>
-                Memory Usage
-              </span>
-              <Database className='w-5 h-5 text-blue-500' />
-            </div>
-            <div className='flex items-baseline'>
-              <span className='text-2xl font-bold text-gray-900 dark:text-white'>
-                78%
-              </span>
-              <span className='ml-2 text-sm text-yellow-600 dark:text-yellow-300'>
-                ↑ 12%
-              </span>
-            </div>
-            <div className='mt-4 h-[50px]'>
-              <ResponsiveContainer width='100%' height='100%'>
-                <LineChart data={performanceData.slice(-10)}>
-                  <Line
-                    type='monotone'
-                    dataKey='memory'
-                    stroke={colors.hd1}
-                    strokeWidth={2}
-                    dot={false}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-
-          <div className='bg-white dark:bg-slate-700 rounded-lg shadow-sm p-4 border border-gray-200 dark:border-slate-600'>
-            <div className='flex items-center justify-between mb-2'>
-              <span className='text-sm font-medium text-gray-500 dark:text-gray-400'>
-                Network I/O
-              </span>
-              <ArrowDown className='w-5 h-5 text-blue-500' />
-            </div>
-            <div className='flex items-baseline'>
-              <span className='text-2xl font-bold text-gray-900 dark:text-white'>
-                1.2 MB/s
-              </span>
-              <span className='ml-2 text-sm text-green-600 dark:text-green-300'>
-                ↓ 0.3 MB/s
-              </span>
-            </div>
-            <div className='mt-4 h-[50px]'>
-              <ResponsiveContainer width='100%' height='100%'>
-                <LineChart data={performanceData.slice(-10)}>
-                  <Line
-                    type='monotone'
-                    dataKey='network'
-                    stroke={colors.hd1}
-                    strokeWidth={2}
-                    dot={false}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-
-          <div className='bg-white dark:bg-slate-700 rounded-lg shadow-sm p-4 border border-gray-200 dark:border-slate-600'>
-            <div className='flex items-center justify-between mb-2'>
-              <span className='text-sm font-medium text-gray-500 dark:text-gray-400'>
-                Disk I/O
-              </span>
-              <HardDrive className='w-5 h-5 text-blue-500' />
-            </div>
-            <div className='flex items-baseline'>
-              <span className='text-2xl font-bold text-gray-900 dark:text-white'>
-                156 IOPS
-              </span>
-              <span className='ml-2 text-sm text-red-600 dark:text-red-300'>
-                ↑ 23 IOPS
-              </span>
-            </div>
-            <div className='mt-4 h-[50px]'>
-              <ResponsiveContainer width='100%' height='100%'>
-                <LineChart data={performanceData.slice(-10)}>
-                  <Line
-                    type='monotone'
-                    dataKey='diskIO'
-                    stroke={colors.hd1}
-                    strokeWidth={2}
-                    dot={false}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
+          <ResourceCard
+            icon={Cpu}
+            title='CPU Utilization'
+            stats='20%'
+            dataKey='cpu'
+            change='↓ 5%'
+            performanceData={performanceData}
+          />
+          <ResourceCard
+            icon={Database}
+            title='Memory Usage'
+            dataKey='memory'
+            stats='78%'
+            change='↑ 12%'
+            performanceData={performanceData}
+          />
+          <ResourceCard
+            icon={ArrowDown}
+            dataKey='network'
+            title='Network I/O'
+            stats='1.2 MB/s'
+            change='↓ 0.3 MB/s'
+            performanceData={performanceData}
+          />
+          <ResourceCard
+            icon={HardDrive}
+            title='Disk I/O'
+            dataKey='diskIO'
+            stats='156 IOPS'
+            change='↑ 23 IOPS'
+            performanceData={performanceData}
+          />
         </div>
 
         {/* Detailed Charts */}
