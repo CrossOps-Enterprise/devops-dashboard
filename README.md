@@ -2,11 +2,11 @@
 
 ## Overview
 
-Syshaven is an advanced dashboard designed to visualize and manage distributed system architectures. It provides an interactive interface to display, monitor, and analyze complex system flows, as represented by diagrams like the one showcased here. The primary focus is on simplifying system orchestration and providing clarity in multi-environment setups such as production and customer environments. This particular system diagram represents the architecture of **One Diversified**, an enterprise with robust production and customer orchestration systems.
+Syshaven is an intelligent dashboard designed to visualize and manage distributed system architectures. It provides an interactive interface to display, monitor, and analyze complex system flows, as represented by diagrams like the one showcased here. The primary focus is on simplifying system orchestration and providing clarity in multi-environment setups such as production and customer environments. This particular system diagram represents the architecture of **One Diversified**, an enterprise with robust production and customer orchestration systems.
 
 ## Key Features
 
-1. **Interactive Diagrams**: View and navigate through system architecture diagrams, including services, APIs, and their interconnections.
+1. **Interactive Visuals**: View and navigate through system drag and droppable architecture including services, APIs, and their interconnections.
 2. **Environment Management**: Visualize both production and customer environments to track the interaction between services.
 3. **API Gateway Visualization**: Highlight the role and flow of requests through API gateways like KrakenD.
 4. **Service Orchestration Insights**: Gain insights into orchestration tools such as Demeter and Jupiter.
