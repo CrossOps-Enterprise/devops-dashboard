@@ -24,22 +24,26 @@ Syshaven is an intelligent dashboard designed to visualize and manage distribute
 
 ### 1. **Jupiter**
 
-- Responsible for orchestration and deployment in the production environment.
-- Manages resources like S3 storage and Spring Boot applications.
+- Orchestrates and deploys resources in the production environment.
+- Utilizes AMI for deployment and manages resources like S3 storage and Spring Boot applications.
+- Uses openTofu scripts to provision resources in the client's environment.
+- Communicates with Agora and Callisto via KrakenD or directly.
 
 ### 2. **Demeter**
 
-- Handles intelligent orchestration in customer environments.
-- Provides services like S3 storage management and DevOps integration.
+- Manages orchestration in customer environments.
+- Provides services such as S3 storage management and DevOps integration.
+- Deploys applications to the client's cloud environment.
 
 ### 3. **KrakenD API Gateway**
 
-- Serves as the central gateway for all API requests.
+- Acts as the central gateway for all API requests.
 - Ensures secure and efficient communication between services.
+- Facilitates interaction between Demeter API and external components.
 
 ## Architecture Diagram Representation
 
-The dashboard diagrams showcase:
+The dashboard showcases:
 
 - Connections between **Jupiter** (production orchestration) and **Demeter** (customer environment orchestration).
 - Interaction between **Demeter API** and external components through the **KrakenD API Gateway**.
