@@ -242,7 +242,7 @@ const TerraformTemplateDashboard = () => {
       <div className='w-2/3 flex flex-col'>
         {selectedTemplate ? (
           <>
-            <div className='h-1/2 relative border border-red'>
+            <div className='h-1/2 relative border border-primary'>
               <div className='absolute top-2 left-2 z-10 bg-white p-2 rounded shadow'>
                 <h3 className='font-semibold'>{selectedTemplate.name}</h3>
               </div>
@@ -256,7 +256,7 @@ const TerraformTemplateDashboard = () => {
                 <Controls />
               </ReactFlow>
             </div>
-            <div className='h-1/2 p-4 bg-gray-50 overflow-auto'>
+            <div className='h-1/2 p-4 bg-gray-50 overflow-hidden'>
               <h4 className='text-lg font-semibold mb-2'>Terraform Script</h4>
               <SyntaxHighlighter
                 language='hcl'
