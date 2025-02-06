@@ -1,8 +1,10 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import { ReactFlow, Background, Controls, MiniMap } from '@xyflow/react'
 import '@xyflow/react/dist/style.css'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { useDispatch } from 'react-redux'
+import { setPageTitle } from '../../features/common/headerSlice'
 
 // Sample Terraform template data
 const ApplicationTemplates = [
@@ -170,6 +172,11 @@ const TerraformTemplateDashboard = () => {
   const [selectedTemplate, setSelectedTemplate] = useState(null)
   const [nodes, setNodes] = useState([])
   const [edges, setEdges] = useState([])
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(setPageTitle({ title: 'Templates' }))
+  }, [dispatch])
 
   // Generate nodes and edges when a template is selected
   const generateResourceFlow = useCallback((template) => {
@@ -235,7 +242,7 @@ const TerraformTemplateDashboard = () => {
       <div className='w-2/3 flex flex-col'>
         {selectedTemplate ? (
           <>
-            <div className='h-1/2 relative'>
+            <div className='h-1/2 relative border border-red'>
               <div className='absolute top-2 left-2 z-10 bg-white p-2 rounded shadow'>
                 <h3 className='font-semibold'>{selectedTemplate.name}</h3>
               </div>
