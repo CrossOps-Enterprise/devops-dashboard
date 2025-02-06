@@ -18,6 +18,7 @@ const ProfileSettings = lazy(() => import('../pages/protected/ProfileSettings'))
 const GettingStarted = lazy(() => import('../pages/GettingStarted'))
 const DocFeatures = lazy(() => import('../pages/DocFeatures'))
 const DocComponents = lazy(() => import('../pages/DocComponents'))
+const Templates = lazy(() => import('../pages/Templates'))
 
 const routes = [
   {
@@ -37,45 +38,49 @@ const routes = [
     component: Billing
   },
   {
-    path: '/welcome', // the url
-    component: Welcome // view rendered
+    path: '/templates',
+    component: Templates
   },
-  {
-    path: '/leads',
-    component: Leads
-  },
-  {
-    path: '/settings-team',
-    component: Team
-  },
-  {
-    path: '/calendar',
-    component: Calendar
-  },
-  {
-    path: '/transactions',
-    component: Transactions
-  },
-  {
-    path: '/settings-profile',
-    component: ProfileSettings
-  },
-  {
-    path: '/getting-started',
-    component: GettingStarted
-  },
-  {
-    path: '/features',
-    component: DocFeatures
-  },
-  {
-    path: '/components',
-    component: DocComponents
-  },
-  {
-    path: '/integration',
-    component: Integration
-  },
+  // {
+  //   path: '/welcome', // the url
+  //   component: Welcome // view rendered
+  // },
+  // {
+  //   path: '/leads',
+  //   component: Leads
+  // },
+  // {
+  //   path: '/settings-team',
+  //   component: Team
+  // },
+  // {
+  //   path: '/calendar',
+  //   component: Calendar
+  // },
+  // {
+  //   path: '/transactions',
+  //   component: Transactions
+  // },
+  // {
+  //   path: '/settings-profile',
+  //   component: ProfileSettings
+  // },
+  // {
+  //   path: '/getting-started',
+  //   component: GettingStarted
+  // },
+  // {
+  //   path: '/features',
+  //   component: DocFeatures
+  // },
+  // {
+  //   path: '/components',
+  //   component: DocComponents
+  // },
+  // {
+  //   path: '/integration',
+  //   component: Integration
+  // },
   {
     path: '/404',
     component: Page404

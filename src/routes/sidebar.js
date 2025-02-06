@@ -6,7 +6,7 @@ import ChartBarIcon from '@heroicons/react/24/outline/ChartBarIcon'
 // import DocumentTextIcon from '@heroicons/react/24/outline/DocumentTextIcon'
 // import TableCellsIcon from '@heroicons/react/24/outline/TableCellsIcon'
 // import WalletIcon from '@heroicons/react/24/outline/WalletIcon'
-// import CodeBracketSquareIcon from '@heroicons/react/24/outline/CodeBracketSquareIcon'
+import CodeBracketSquareIcon from '@heroicons/react/24/outline/CodeBracketSquareIcon'
 // import DocumentIcon from '@heroicons/react/24/outline/DocumentIcon'
 // import ExclamationTriangleIcon from '@heroicons/react/24/outline/ExclamationTriangleIcon'
 // import CalendarDaysIcon from '@heroicons/react/24/outline/CalendarDaysIcon'
@@ -51,6 +51,11 @@ export const menus = [
         name: 'Production One' // name that appear in Sidebar
       }
     ]
+  },
+  {
+    path: '/app/templates',
+    icon: <CodeBracketSquareIcon className={`${iconClasses} inline`} />, //no url needed as this has submenu
+    name: 'Templates' // name that appear in Sidebar
   }
   // {
   //   path: '/app/stats', // url
